@@ -1,0 +1,23 @@
+[
+ {
+  "ep": "create_task",
+  "first": true,
+  "second": true,
+  "delta": 2,
+  "note": "two records from identical calls"
+ },
+ {
+  "ep": "raise_invoice (already raised)",
+  "first": true,
+  "second": true,
+  "delta": "-",
+  "note": "second raise ALSO succeeded — not guarded against double-raise"
+ },
+ {
+  "ep": "close_batch (already closed)",
+  "first": true,
+  "second": true,
+  "delta": "-",
+  "note": "second close ALSO succeeded"
+ }
+]

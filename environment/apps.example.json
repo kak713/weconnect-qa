@@ -1,0 +1,12 @@
+[
+ { "url": "https://github.com/frappe/erpnext", "branch": "v15.114.0" },
+ { "url": "https://github.com/frappe/insights", "branch": "v3.12.5" },
+ { "url": "https://github.com/<org>/weconnect-backend-authentication", "branch": "dev" },
+ { "url": "https://github.com/<org>/weconnect-backend-skilling", "branch": "dev" },
+ { "url": "https://github.com/<org>/weconnect-backend-centerhead", "branch": "dev" },
+ { "url": "https://github.com/<org>/weconnect-backend-facilitator-and-counsellor", "branch": "dev" },
+ { "url": "https://github.com/<org>/weconnect-backend-outreach", "branch": "dev" },
+ { "url": "https://github.com/<org>/weconnect-backend-batch-management", "branch": "dev" },
+ { "url": "https://github.com/<org>/weconnect-backend-placement", "branch": "dev" },
+ { "url": "https://github.com/<org>/weconnect-backend-event-management", "branch": "dev" }
+]

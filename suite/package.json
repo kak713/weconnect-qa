@@ -1,0 +1,29 @@
+{
+  "name": "weconnect-qa-suite",
+  "version": "2.0.0",
+  "description": "WeConnect 2.0 QA automation suite",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "seed": "./seed.sh",
+    "verify": "node probes/compare-environments.mjs",
+    "test:boundaries": "node probes/rbac-write-probe.mjs && node probes/state-boundary-sweep.mjs",
+    "test:authorization": "node probes/gate-probe.mjs",
+    "test:validation": "node probes/validation-probe.mjs",
+    "test:idempotency": "node probes/idempotency-probe.mjs",
+    "test:lifecycle": "node probes/lifecycle-probe.mjs",
+    "test": "npm run test:authorization && npm run test:boundaries && npm run test:validation && npm run test:idempotency && npm run test:lifecycle && npm run test:lifecycle-syc-sm && npm run test:massassign",
+    "test:lifecycle-syc-sm": "node probes/lifecycle-syc-sm.mjs",
+    "test:massassign": "node probes/mass-assignment-probe.mjs && node probes/chained-boundary-probe.mjs",
+    "test:boundaries:values": "python3 probes/boundary_probe.py",
+    "test:states": "python3 probes/state_transition_probe.py",
+    "scan:massassign": "python3 probes/mass_assignment_scan.py",
+    "verify:findings": "node ../verify/run.mjs"
+  },
+  "dependencies": {
+    "dotenv": "16.6.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,32 @@
+[
+ {
+  "name": "withdraw_batch (North batch)",
+  "verdict": "BREACHED",
+  "status": 200,
+  "snippet": "{\"success_key\":1,\"message\":\"Batch withdrawn successfully.\",\"data\":{\"batch_id\":\"QAN/QSP/QC1"
+ },
+ {
+  "name": "raise_batch_fill_request (North)",
+  "verdict": "inconclusive",
+  "status": 404,
+  "snippet": "{\"exc_type\":\"DoesNotExistError\",\"_server_messages\":\"[\\\"{\\\\\\\"message\\\\\\\": \\\\\\\"Notification "
+ },
+ {
+  "name": "mark_as_complete (North batch)",
+  "verdict": "inconclusive",
+  "status": 200,
+  "snippet": "{\"success_key\":0,\"message\":\"skilling_batch_id is required.\",\"data\":{}}"
+ },
+ {
+  "name": "discontinue_course",
+  "verdict": "BREACHED",
+  "status": 200,
+  "snippet": "{\"success_key\":1,\"message\":\"Course discontinued successfully\",\"data\":{\"course_id\":\"QA Cour"
+ },
+ {
+  "name": "discontinue_skilling_partner",
+  "verdict": "inconclusive",
+  "status": 404,
+  "snippet": "{\"success_key\":0,\"message\":\"Skilling Partner not found.\"}"
+ }
+]

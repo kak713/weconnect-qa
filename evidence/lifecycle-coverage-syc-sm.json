@@ -1,0 +1,126 @@
+[
+  {
+    "object": "Course",
+    "persona": "sm",
+    "id": "QA Course 1789924757373_QA Synthetic Partner_QA Region Bravo",
+    "steps": {
+      "create": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Step 1 saved successfully.\",\"data\":{\"course_id\":\"QA Course 1789924757373_QA Synthetic Partner_QA Region Bravo\",\"course_name\":\"QA Course 1789924757373\",\"course_category\":\"QA-Course Category-Charlie-0002\",\"onboarding_date\":\"2026-07-01\",\"certificate_issuing_authority\":\"QA-Certificate Issuin-Charlie-0002\",\"lighthouse_centre\":[{\"name\":\"lumb5nug73\",\"owner\":\"qa.sm@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:17.402272\",\"modified\":\"2026-09-20 22:49:17.402272\",\"modified_by\":\"qa.sm@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":1,\"lighthouse_centre\":\"QA North Centre\",\"parent\":\"QA Course 1789924757373_QA Synthetic Partner_QA Region Bravo\",\"parentfield\":\"lighthouse_centre\",\"parenttype\":\"Course\",\"doctype\":\"Course LH Centre\"}],\"equivalent_qp_code\":\"QA-QP-001\",\"course_duration_months\":3,\"course_duration_hours\":360,\"total_theory_hours\":120,\"total_practical_hours\":180,\"total_ojt_hours\":60,\"education\":\"QA-Education-Charlie-0002\",\"eligibility_remark\":\"QA eligibility\",\"gender\":\"All\",\"age_group\":\"18-25\",\"course_type\":\"Free\",\"type_of_batch\":\"Regional\",\"mode_of_training\":\"Offline\",\"min_batch_strength\":10,\"max_batch_strength\":30,\"employment_linked\":\"Employment Linked\",\"job_roles_aligned\":\"QA-Job Role-Charlie-0002\",\"average_salary_from_employer\":0.0,\"number_of_employees\":5,\"total_course_fees\":0.0,\"lcf_cost\":0.0,\"student_contribution\":0.0,\"number_of_installments\":0,\"installment_1\":0.0,\"installment_2\":0.0,\"installment_3\":0.0,\"installment_4\":0.0,\"screening_test_required\":\"No\",\"screening_frequency\":\"\",\"screening_days\":\"\",\"skilling_partner\":\"QA Synthetic Partner_QA Region Bravo\",\"number_of_training_centers\":0,\"training_centers\":[],\"description\":null,\"documents\":[]}}",
+        "verdict": "PASS"
+      },
+      "read": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"data\":{\"name\":\"QA Course 1789924757373_QA Synthetic Partner_QA Region Bravo\",\"owner\":\"qa.sm@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:17.402272\",\"modified\":\"2026-09-20 22:49:17.402272\",\"modified_by\":\"qa.sm@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":0,\"course\":\"QA Course 1789924757373\",\"course_category\":\"QA-Course Category-Charlie-0002\",\"onboarding_date\":\"2026-07-01\",\"certificate_issuing_authority\":\"QA-Certificate Issuin-Charlie-0002\",\"course_duration_months\":3,\"course_duration_hours\":360,\"daily_hours\":0,\"total_theory_hours\":120,\"total_practical_hours\":180,\"total_ojt_hours\":60,\"education\":\"QA-Education-Charlie-0002\",\"eligibility_remark\":\"QA eligibility\",\"gender\":\"All\",\"equivalent_qp_code\":\"QA-QP-001\",\"type_of_batch\":\"Regional\",\"mode_of_training\":\"Offline\",\"job_roles_aligned\":\"QA-Job Role-Charlie-0002\",\"average_salary_from_employer\":0.0,\"number_of_employees\":5,\"course_type\":\"Free\",\"min_batch_strength\":10,\"max_batch_strength\":30,\"employment_linked\":\"Employment Linked\",\"employment_linked_percentage\":0,\"age_group\":\"18-25\",\"skilling_partner\":\"QA Synthetic Partner_QA Region Bravo\",\"number_of_training_centers\":0,\"gst_applicable\":\"Yes\",\"course_fees_ex_gst\":0.0,\"gst_percentage\":0.0,\"gst_amount\":0.0,\"lcf_cost\":0.0,\"student_contribution\":0.0,\"total_course_fees\":0.0,\"number_of_installments\":0,\"installment_1\":0.0,\"installment_2\":0.0,\"installment_3\":0.0,\"installment_4\":0.0,\"screening_test_required\":\"No\",\"screening_frequency\":\"\",\"screening_days\":\"\",\"week_of_month\":0,\"screening_time_from\":\"22:49:17.398587\",\"screening_time_to\":\"22:49:17.398948\",\"completion_percent\":0.0,\"placement_performance\":0.0,\"quality_audit_score\":0.0,\"roi_compliance\":0.0,\"course_status\":\"Active\",\"doctype\":\"Course\",\"status_log\":[],\"lighthouse_centre\":[{\"name\":\"lumb5nug73\",\"owner\":\"qa.sm@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:17.402272\",\"modified\":\"2026-09-20 22:49:17.402272\",\"modified_by\":\"qa.sm@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":1,\"lighthouse_centre\":\"QA North Centre\",\"parent\":\"QA Course 1789924757373_QA Synthetic Partner_QA Region Bravo\",\"parentfield\":\"lighthouse_centre\",\"parenttype\":\"Course\",\"doctype\":\"Course LH Centre\"}],\"locations\":[]}}",
+        "verdict": "PASS"
+      },
+      "update": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Step 1 saved successfully.\",\"data\":{\"course_id\":\"QA Course 1789924757373_QA Synthetic Partner_QA Region Bravo\",\"course_name\":\"QA Course 1789924757373 Edited\",\"course_category\":\"QA-Course Category-Charlie-0002\",\"onboarding_date\":\"2026-07-01\",\"certificate_issuing_authority\":\"QA-Certificate Issuin-Charlie-0002\",\"lighthouse_centre\":[{\"name\":\"lunkdistgp\",\"owner\":\"qa.sm@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:17.402272\",\"modified\":\"2026-09-20 22:49:17.526304\",\"modified_by\":\"qa.sm@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":1,\"lighthouse_centre\":\"QA North Centre\",\"parent\":\"QA Course 1789924757373_QA Synthetic Partner_QA Region Bravo\",\"parentfield\":\"lighthouse_centre\",\"parenttype\":\"Course\",\"doctype\":\"Course LH Centre\"}],\"equivalent_qp_code\":\"QA-QP-001\",\"course_duration_months\":3,\"course_duration_hours\":360,\"total_theory_hours\":120,\"total_practical_hours\":180,\"total_ojt_hours\":60,\"education\":\"QA-Education-Charlie-0002\",\"eligibility_remark\":\"QA eligibility\",\"gender\":\"All\",\"age_group\":\"18-25\",\"course_type\":\"Free\",\"type_of_batch\":\"Regional\",\"mode_of_training\":\"Offline\",\"min_batch_strength\":10,\"max_batch_strength\":30,\"employment_linked\":\"Employment Linked\",\"job_roles_aligned\":\"QA-Job Role-Charlie-0002\",\"average_salary_from_employer\":0.0,\"number_of_employees\":5,\"total_course_fees\":0.0,\"lcf_cost\":0.0,\"student_contribution\":0.0,\"number_of_installments\":0,\"installment_1\":0.0,\"installment_2\":0.0,\"installment_3\":0.0,\"installment_4\":0.0,\"screening_test_required\":\"No\",\"screening_frequency\":null,\"screening_days\":null,\"skilling_partner\":\"QA Synthetic Partner_QA Region Bravo\",\"number_of_training_centers\":0,\"training_centers\":[],\"description\":null,\"documents\":[]}}",
+        "verdict": "PASS"
+      },
+      "stateChange": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Course discontinued successfully\",\"data\":{\"course_id\":\"QA Course 1789924757373_QA Synthetic Partner_QA Region Bravo\",\"course_status\":\"Discontinued\",\"discontinued_date\":\"2026-08-01\",\"discontinued_remark\":\"QA lifecycle\"}}",
+        "verdict": "PASS"
+      }
+    }
+  },
+  {
+    "object": "Skilling Partner",
+    "persona": "sm",
+    "id": "QA Partner 1789924757622_QA Region Bravo",
+    "steps": {
+      "create": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Step 1 saved successfully.\",\"data\":{\"skilling_partner_id\":\"QA Partner 1789924757622_QA Region Bravo\",\"partner_name\":\"QA Partner 1789924757622\",\"partner_email_id\":\"qa.partner@qa-synthetic.invalid\",\"region\":\"QA Region Bravo\",\"lighthouse_centre\":[{\"name\":\"luo61bj6sc\",\"owner\":\"qa.sm@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:17.646850\",\"modified\":\"2026-09-20 22:49:17.646850\",\"modified_by\":\"qa.sm@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":1,\"lighthouse_centre\":\"QA North Centre\",\"parent\":\"QA Partner 1789924757622_QA Region Bravo\",\"parentfield\":\"lighthouse_centre\",\"parenttype\":\"Skilling Partner\",\"doctype\":\"Skilling Partner Lighthouse Centre Table\"}],\"mou_start_date\":\"2026-07-01\",\"mou_end_date\":\"2027-06-30\",\"head_office\":\"QA Head Office\",\"partner_type\":\"External\",\"organisation_type\":\"Limited Liability Partnership\",\"nsdc_affiliated\":\"No\",\"pan_number\":\"AAAPL1234C\",\"gst_number\":null,\"tds_nil_lower_deduction_applicable\":\"No\",\"tds_lower_deduction_percentage\":0.0,\"tds_number\":null,\"mode_of_training\":\"Online\",\"spoc_name\":\"QA SPOC\",\"spoc_first_name\":\"QA\",\"spoc_middle_name\":null,\"spoc_last_name\":\"SPOC\",\"spoc_mobile_number\":\"9000088888\",\"spoc_alternate_phone\":null,\"spoc_email\":\"qa.spoc@qa-synthetic.invalid\",\"spoc_location\":\"QA SPOC Location\",\"spoc_designation\":null,\"number_of_training_centers\":1,\"training_centers\":[],\"number_of_trainers\":1,\"trainers\":[],\"description\":null,\"documents\":[]}}",
+        "verdict": "PASS"
+      },
+      "read": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"data\":{\"name\":\"QA Partner 1789924757622_QA Region Bravo\",\"owner\":\"qa.sm@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:17.646850\",\"modified\":\"2026-09-20 22:49:17.646850\",\"modified_by\":\"qa.sm@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":0,\"third_party_center\":\"QA Partner 1789924757622\",\"region\":\"QA Region Bravo\",\"partner_email_id\":\"qa.partner@qa-synthetic.invalid\",\"partner_type\":\"External\",\"organisation_type\":\"Limited Liability Partnership\",\"mou_start_date\":\"2026-07-01\",\"mou_end_date\":\"2027-06-30\",\"head_office\":\"QA Head Office\",\"nsdc_affiliated\":\"No\",\"pan_number\":\"AAAPL1234C\",\"tds_nil_lower_deduction_applicable\":\"No\",\"tds_lower_deduction_percentage\":0.0,\"mode_of_training\":\"Online\",\"spoc_first_name\":\"QA\",\"spoc_last_name\":\"SPOC\",\"spoc_mobile_number\":\"9000088888\",\"spoc_email\":\"qa.spoc@qa-synthetic.invalid\",\"spoc_location\":\"QA SPOC Location\",\"spoc_name\":\"QA SPOC\",\"number_of_training_centers\":1,\"number_of_trainers\":1,\"completion\":0.0,\"placement_performance\":0.0,\"quality_audit_score\":0.0,\"roi_compliance\":0.0,\"partner_status\":\"Active\",\"profile_activated\":1,\"doctype\":\"Skilling Partner\",\"ratings\":[],\"trainers\":[],\"training_centers\":[],\"status_log\":[],\"lighthouse_centre\":[{\"name\":\"luo61bj6sc\",\"owner\":\"qa.sm@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:17.646850\",\"modified\":\"2026-09-20 22:49:17.646850\",\"modified_by\":\"qa.sm@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":1,\"lighthouse_centre\":\"QA North Centre\",\"parent\":\"QA Partner 1789924757622_QA Region Bravo\",\"parentfield\":\"lighthouse_centre\",\"parenttype\":\"Skilling Partner\",\"doctype\":\"Skilling Partner Lighthouse Centre Table\"}]}}",
+        "verdict": "PASS"
+      },
+      "update": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Step 1 saved successfully.\",\"data\":{\"skilling_partner_id\":\"QA Partner 1789924757622_QA Region Bravo\",\"partner_name\":\"QA Partner 1789924757622 Edited\",\"partner_email_id\":\"qa.partner@qa-synthetic.invalid\",\"region\":\"QA Region Bravo\",\"lighthouse_centre\":[{\"name\":\"lupkqjik39\",\"owner\":\"qa.sm@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:17.646850\",\"modified\":\"2026-09-20 22:49:17.764333\",\"modified_by\":\"qa.sm@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":1,\"lighthouse_centre\":\"QA North Centre\",\"parent\":\"QA Partner 1789924757622_QA Region Bravo\",\"parentfield\":\"lighthouse_centre\",\"parenttype\":\"Skilling Partner\",\"doctype\":\"Skilling Partner Lighthouse Centre Table\"}],\"mou_start_date\":\"2026-07-01\",\"mou_end_date\":\"2027-06-30\",\"head_office\":\"QA Head Office\",\"partner_type\":\"External\",\"organisation_type\":\"Limited Liability Partnership\",\"nsdc_affiliated\":\"No\",\"pan_number\":\"AAAPL1234C\",\"gst_number\":null,\"tds_nil_lower_deduction_applicable\":\"No\",\"tds_lower_deduction_percentage\":0.0,\"tds_number\":null,\"mode_of_training\":\"Online\",\"spoc_name\":\"QA SPOC\",\"spoc_first_name\":\"QA\",\"spoc_middle_name\":null,\"spoc_last_name\":\"SPOC\",\"spoc_mobile_number\":\"9000088888\",\"spoc_alternate_phone\":null,\"spoc_email\":\"qa.spoc@qa-synthetic.invalid\",\"spoc_location\":\"QA SPOC Location\",\"spoc_designation\":null,\"number_of_training_centers\":1,\"training_centers\":[],\"number_of_trainers\":1,\"trainers\":[],\"description\":null,\"documents\":[]}}",
+        "verdict": "PASS"
+      },
+      "stateChange": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Skilling Partner discontinued successfully\",\"data\":{\"partner_id\":\"QA Partner 1789924757622_QA Region Bravo\",\"partner_status\":\"Discontinued\",\"discontinued_date\":\"2026-08-01\",\"discontinued_remark\":\"QA lifecycle\"}}",
+        "verdict": "PASS"
+      }
+    }
+  },
+  {
+    "object": "Batch Attendance",
+    "persona": "syc",
+    "id": "QAE/QSP/QC1E/01-08-2026/0004",
+    "steps": {
+      "create": {
+        "verdict": "N/A (marked, not created)",
+        "ok": true,
+        "status": 0,
+        "text": ""
+      },
+      "update": {
+        "verdict": "N/A (no update endpoint)",
+        "ok": true,
+        "status": 0,
+        "text": ""
+      },
+      "read": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Attendance fetched.\",\"data\":{\"details\":{\"batch_id\":\"QAE/QSP/QC1E/01-08-2026/0004\",\"course\":\"QA Course 1789924236397_QA Synthetic Partner_QA Region Bravo\",\"skilling_partner\":\"QA Synthetic Partner_QA Region Bravo\",\"trainer_name\":\"\",\"today_day_number\":0},\"avg_attendance\":0.0,\"overview\":{\"date\":null,\"total_students\":0,\"present\":0,\"absent\":0},\"low_attendance_alerts\":[],\"selected_week\":null,\"attendance\":{\"dates\":[],\"working_dates\":[],\"rows\":[]}},\"count\":{\"count\":1,\"total_data_count\":1,\"total_pages\":1}}",
+        "verdict": "PASS"
+      },
+      "stateChange": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Attendance updated successfully.\",\"data\":{}}",
+        "verdict": "PASS"
+      }
+    }
+  },
+  {
+    "object": "Youth Status",
+    "persona": "syc",
+    "id": "YOUTH-00010",
+    "steps": {
+      "create": {
+        "verdict": "N/A (created via enquiry)",
+        "ok": true,
+        "status": 0,
+        "text": ""
+      },
+      "update": {
+        "verdict": "N/A (state change = update)",
+        "ok": true,
+        "status": 0,
+        "text": ""
+      },
+      "read": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"data\":{\"name\":\"YOUTH-00010\",\"owner\":\"Administrator\",\"creation\":\"2026-09-20 22:37:21.977900\",\"modified\":\"2026-09-20 22:49:18.766766\",\"modified_by\":\"qa.syc@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":0,\"naming_series\":\"YOUTH-\",\"first_name\":\"QA Bravo\",\"full_name\":\"QA Bravo Youth0010\",\"contact_no\":\"+919000000010\",\"last_name\":\"Youth0010\",\"remark\":\"QA lifecycle\",\"lighthouse_centre\":\"QA East Centre\",\"lighthouse_centre_abbr\":\"QAE\",\"stage\":\"Standby\",\"standby\":\"Open Pre Enquiry\",\"standby_remark\":\"\",\"batch_status\":\"\",\"drop_off\":\"\",\"drop_off_remark\":\"\",\"status\":\"Skilling Enrolled\",\"entrepreneur_type\":\"\",\"is_transfer\":0,\"edit_journey\":0,\"number_of_calls\":0,\"int_entre\":0,\"current_screening_status\":\"\",\"communication_score\":0,\"technical_score\":0,\"doctype\":\"Youth\",\"youth_status_journey\":[{\"name\":\"ev3r00esmf\",\"owner\":\"Administrator\",\"creation\":\"2026-09-20 22:37:21.984245\",\"modified\":\"2026-09-20 22:49:18.766766\",\"modified_by\":\"qa.syc@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":1,\"youth_status\":\"Open Pre Enquiry\",\"status_changed_at\":\"2026-09-20 22:37:21.981630\",\"status_modified_by\":\"Administrator\",\"parent\":\"YOUTH-00010\",\"parentfield\":\"youth_status_journey\",\"parenttype\":\"Youth\",\"doctype\":\"Youth Status Journey\"},{\"name\":\"gsa3ivaom7\",\"owner\":\"qa.syc@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:40:37.840895\",\"modified\":\"2026-09-20 22:49:18.766766\",\"modified_by\":\"qa.syc@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":2,\"youth_status\":\"Standby\",\"status_changed_from\":\"Open Pre Enquiry\",\"status_changed_at\":\"2026-09-20 22:40:37.832986\",\"status_modified_by\":\"qa.syc@qa-synthetic.invalid\",\"parent\":\"YOUTH-00010\",\"parentfield\":\"youth_status_journey\",\"parenttype\":\"Youth\",\"doctype\":\"Youth Status Journey\"},{\"name\":\"iqvou0inb0\",\"owner\":\"Administrator\",\"creation\":\"2026-09-20 22:43:58.306186\",\"modified\":\"2026-09-20 22:49:18.766766\",\"modified_by\":\"qa.syc@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":3,\"youth_status\":\"Skilling Not Enrolled\",\"status_changed_from\":\"Standby\",\"status_changed_at\":\"2026-09-20 22:43:58.201513\",\"status_modified_by\":\"Administrator\",\"parent\":\"YOUTH-00010\",\"parentfield\":\"youth_status_journey\",\"parenttype\":\"Youth\",\"doctype\":\"Youth Status Journey\"},{\"name\":\"lv3bja9sik\",\"owner\":\"qa.syc@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:49:18.794175\",\"modified\":\"2026-09-20 22:49:18.794175\",\"modified_by\":\"qa.syc@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":4,\"youth_status\":\"Skilling Enrolled\",\"status_changed_from\":\"Skilling Not Enrolled\",\"status_changed_at\":\"2026-09-20 22:49:18.781834\",\"status_modified_by\":\"qa.syc@qa-synthetic.invalid\",\"parent\":\"YOUTH-00010\",\"parentfield\":\"youth_status_journey\",\"parenttype\":\"Youth\",\"doctype\":\"Youth Status Journey\"}],\"youth_journey\":[{\"name\":\"ev3gol7dr3\",\"owner\":\"Administrator\",\"creation\":\"2026-09-20 22:37:21.983648\",\"modified\":\"2026-09-20 22:49:18.766766\",\"modified_by\":\"qa.syc@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":1,\"youth_stage\":\"Pre Enquiry\",\"date_time\":\"2026-09-20 22:37:21.981549\",\"modified_by1\":\"Administrator\",\"parent\":\"YOUTH-00010\",\"parentfield\":\"youth_journey\",\"parenttype\":\"Youth\",\"doctype\":\"Youth Journey Details\"},{\"name\":\"gsahoq27d3\",\"owner\":\"qa.syc@qa-synthetic.invalid\",\"creation\":\"2026-09-20 22:40:37.838408\",\"modified\":\"2026-09-20 22:49:18.766766\",\"modified_by\":\"qa.syc@qa-synthetic.invalid\",\"docstatus\":0,\"idx\":2,\"youth_stage\":\"Standby\",\"date_time\":\"2026-09-20 22:40:37.832880\",\"modified_by1\":\"qa.syc@qa-synthetic.invalid\",\"parent\":\"YOUTH-00010\",\"parentfield\":\"youth_journey\",\"parenttype\":\"Youth\",\"doctype\":\"Youth Journey Details\"}],\"youth_batch_history\":[],\"attendance_calls\":[],\"counselling_call_details\":[],\"placement_call_details\":[],\"screening_details\":[],\"skilling_call_details\":[]}}",
+        "verdict": "PASS"
+      },
+      "stateChange": {
+        "ok": true,
+        "status": 200,
+        "text": "{\"success_key\":1,\"message\":\"Updated Status Successfully for YOUTH-00010\"}",
+        "verdict": "PASS"
+      }
+    }
+  }
+]

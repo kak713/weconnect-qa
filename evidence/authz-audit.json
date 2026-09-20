@@ -1,0 +1,470 @@
+[
+ {
+  "app": "authentication",
+  "fn": "create_user",
+  "methods": [
+   "POST"
+  ],
+  "guest": true,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "authentication",
+  "fn": "send_otp",
+  "methods": [
+   "POST"
+  ],
+  "guest": true,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "authentication",
+  "fn": "verify_otp",
+  "methods": [
+   "POST"
+  ],
+  "guest": true,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "authentication",
+  "fn": "reset_password",
+  "methods": [
+   "POST"
+  ],
+  "guest": true,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "authentication",
+  "fn": "login",
+  "methods": [
+   "POST"
+  ],
+  "guest": true,
+  "approval": false,
+  "direct": false,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "event-management",
+  "fn": "create_event",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "event-management",
+  "fn": "update_event",
+  "methods": [
+   "PUT"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "event-management",
+  "fn": "visit_summory",
+  "methods": [
+   "PUT"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "facilitator-and-counsellor",
+  "fn": "assign_recounselling",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "facilitator-and-counsellor",
+  "fn": "upload_file",
+  "methods": [
+   "PUT"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "update_status",
+  "methods": [
+   "PUT"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "schedule_visit",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "send_mobile_verify_otp",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "verify_mobile_otp",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "upload_redirect",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "delete_file_by_url",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "placement",
+  "fn": "toggle_bookmark",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "placement",
+  "fn": "update_cv_screening_status",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "discontinue_course",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "reactivate_course",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "discontinue_skilling_partner",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "reactivate_skilling_partner",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "move_activity",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "screening_reattempt",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "rejection_withdrawal",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "assign_assignment",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "raise_batch_fill_request",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "close_batch",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "withdraw_batch",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "prepare_tax_invoice",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "raise_invoice",
+  "methods": [
+   "PUT"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "upload_student_declaration",
+  "methods": [
+   "PUT"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "create_enquiry",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": true,
+  "found": true
+ },
+ {
+  "app": "outreach",
+  "fn": "update_enquiry_form",
+  "methods": [
+   "PUT"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": true,
+  "authz": true,
+  "found": true
+ },
+ {
+  "app": "batch-management",
+  "fn": "move_youth",
+  "methods": [
+   "PUT"
+  ],
+  "guest": false,
+  "approval": true,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "repeat_activity",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": false,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "request_for_post_test",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": true,
+  "direct": true,
+  "authz": false,
+  "found": true
+ },
+ {
+  "app": "skilling",
+  "fn": "refresh_invoice_and_batch_statuses",
+  "methods": [
+   "POST"
+  ],
+  "guest": false,
+  "approval": false,
+  "direct": false,
+  "authz": false,
+  "found": true
+ }
+]

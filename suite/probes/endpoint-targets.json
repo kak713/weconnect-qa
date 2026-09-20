@@ -1,0 +1,290 @@
+[
+ {
+  "path": "authentication.authentication.api.registration.create_user",
+  "methods": [
+   "POST"
+  ],
+  "app": "authentication",
+  "fn": "create_user"
+ },
+ {
+  "path": "authentication.authentication.api.password.send_otp",
+  "methods": [
+   "POST"
+  ],
+  "app": "authentication",
+  "fn": "send_otp"
+ },
+ {
+  "path": "authentication.authentication.api.password.verify_otp",
+  "methods": [
+   "POST"
+  ],
+  "app": "authentication",
+  "fn": "verify_otp"
+ },
+ {
+  "path": "authentication.authentication.api.password.reset_password",
+  "methods": [
+   "POST"
+  ],
+  "app": "authentication",
+  "fn": "reset_password"
+ },
+ {
+  "path": "event_management.apis.calendar.create_event",
+  "methods": [
+   "POST"
+  ],
+  "app": "event-management",
+  "fn": "create_event"
+ },
+ {
+  "path": "event_management.apis.calendar.update_event",
+  "methods": [
+   "PUT"
+  ],
+  "app": "event-management",
+  "fn": "update_event"
+ },
+ {
+  "path": "event_management.apis.calendar.visit_summory",
+  "methods": [
+   "PUT"
+  ],
+  "app": "event-management",
+  "fn": "visit_summory"
+ },
+ {
+  "path": "facilitator_and_counsellor.api.counselling.form.assign_recounselling",
+  "methods": [
+   "POST"
+  ],
+  "app": "facilitator-and-counsellor",
+  "fn": "assign_recounselling"
+ },
+ {
+  "path": "facilitator_and_counsellor.api.registration_form_B.files.upload_file",
+  "methods": [
+   "PUT"
+  ],
+  "app": "facilitator-and-counsellor",
+  "fn": "upload_file"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry.add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "add_call_details"
+ },
+ {
+  "path": "outreach.outreach.apis.registration.actions.add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "add_call_details"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry_form.actions.add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "add_call_details"
+ },
+ {
+  "path": "outreach.outreach.apis.pre_enquiry.actions.add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "add_call_details"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry.update_status",
+  "methods": [
+   "PUT"
+  ],
+  "app": "outreach",
+  "fn": "update_status"
+ },
+ {
+  "path": "outreach.outreach.apis.registration.actions.update_status",
+  "methods": [
+   "PUT"
+  ],
+  "app": "outreach",
+  "fn": "update_status"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry_form.form.update_status",
+  "methods": [
+   "PUT"
+  ],
+  "app": "outreach",
+  "fn": "update_status"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry.schedule_visit",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "schedule_visit"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry_form.actions.schedule_visit",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "schedule_visit"
+ },
+ {
+  "path": "outreach.outreach.apis.pec.helper.send_mobile_verify_otp",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "send_mobile_verify_otp"
+ },
+ {
+  "path": "outreach.outreach.apis.pec.helper.verify_mobile_otp",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "verify_mobile_otp"
+ },
+ {
+  "path": "outreach.outreach.apis.registration.files.delete_file_by_url",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "delete_file_by_url"
+ },
+ {
+  "path": "youth_placement.api.actions.toggle_bookmark",
+  "methods": [
+   "POST"
+  ],
+  "app": "placement",
+  "fn": "toggle_bookmark"
+ },
+ {
+  "path": "youth_skilling.api.skilling_repository.discontinue_course",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "discontinue_course"
+ },
+ {
+  "path": "youth_skilling.api.skilling_repository.reactivate_course",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "reactivate_course"
+ },
+ {
+  "path": "youth_skilling.api.skilling_repository.discontinue_skilling_partner",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "discontinue_skilling_partner"
+ },
+ {
+  "path": "youth_skilling.api.skilling_repository.reactivate_skilling_partner",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "reactivate_skilling_partner"
+ },
+ {
+  "path": "youth_skilling.api.curriculum.move_activity",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "move_activity"
+ },
+ {
+  "path": "youth_skilling.api.screening.screening_reattempt",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "screening_reattempt"
+ },
+ {
+  "path": "youth_skilling.api.screening.rejection_withdrawal",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "rejection_withdrawal"
+ },
+ {
+  "path": "youth_skilling.api.assignment.assign_assignment",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "assign_assignment"
+ },
+ {
+  "path": "youth_skilling.api.batch_management.raise_batch_fill_request",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "raise_batch_fill_request"
+ },
+ {
+  "path": "youth_skilling.api.batch_management.close_batch",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "close_batch"
+ },
+ {
+  "path": "youth_skilling.api.batch_management.withdraw_batch",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "withdraw_batch"
+ },
+ {
+  "path": "youth_skilling.api.invoice.prepare_tax_invoice",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "prepare_tax_invoice"
+ },
+ {
+  "path": "youth_skilling.api.invoice.raise_invoice",
+  "methods": [
+   "PUT"
+  ],
+  "app": "skilling",
+  "fn": "raise_invoice"
+ },
+ {
+  "path": "youth_skilling.api.invoice.upload_student_declaration",
+  "methods": [
+   "PUT"
+  ],
+  "app": "skilling",
+  "fn": "upload_student_declaration"
+ }
+]

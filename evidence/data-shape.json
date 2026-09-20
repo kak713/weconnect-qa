@@ -1,0 +1,941 @@
+{
+ "_note": "Structural measurement of the client's data: record counts, array lengths and key names. NO FIELD VALUES ARE RECORDED. Obtained with GET requests only.",
+ "_generated": "2026-09-20T08:44:30.020Z",
+ "personas": {
+  "fc": {
+   "probed": 11,
+   "endpoints": {
+    "facilitator_and_counsellor.api.counselling.helper.get_youth_list": {
+     "status": 200,
+     "onPage": 3825,
+     "total": 3825,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "message",
+       "options",
+       "success_key"
+      ],
+      "nested": {
+       "options": 3825
+      }
+     }
+    },
+    "facilitator_and_counsellor.api.counselling.dashboard.get_data": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(3 keys)"
+      }
+     }
+    },
+    "centre_head.api.target.main_dashboard.main_target": {
+     "status": 500
+    },
+    "batch_management.api.fc.dashboard.batches": {
+     "status": 500
+    },
+    "facilitator_and_counsellor.api.highlights.fc_highlights.get_counselling_counts": {
+     "status": 417
+    },
+    "batch_management.api.fc.dashboard.pendding_task": {
+     "status": 200,
+     "onPage": 0,
+     "total": 0,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success"
+      ],
+      "nested": {
+       "data": 0
+      }
+     }
+    },
+    "batch_management.api.fc.dashboard.todays_event": {
+     "status": 500
+    },
+    "facilitator_and_counsellor.api.counselling.list.get_counselling_list": {
+     "status": 200,
+     "onPage": 20,
+     "total": 810,
+     "pages": 41,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key",
+       "total_data_count",
+       "total_pages"
+      ],
+      "nested": {
+       "data": 20
+      }
+     }
+    },
+    "batch_management.api.fc.dashboard.foundation": {
+     "status": 500
+    }
+   }
+  },
+  "ch": {
+   "probed": 26,
+   "endpoints": {
+    "centre_head.api.target.main_dashboard.main_target": {
+     "status": 500
+    },
+    "centre_head.api.approval.list.get_approvals": {
+     "status": 200,
+     "onPage": 20,
+     "total": 20,
+     "pages": 27,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "current_page_count",
+       "data",
+       "message",
+       "success_key",
+       "total_pages",
+       "total_records"
+      ],
+      "nested": {
+       "data": 20
+      }
+     }
+    },
+    "centre_head.api.target.helper.target_list": {
+     "status": 200,
+     "onPage": 9,
+     "total": 9,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 9
+      }
+     }
+    },
+    "centre_head.api.dashboard.main.pending_approval": {
+     "status": 200,
+     "onPage": 521,
+     "total": 521,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 521
+      }
+     }
+    },
+    "centre_head.api.dashboard.main.my_team": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(9 keys)"
+      }
+     }
+    },
+    "batch_management.api.fc.dashboard.batches": {
+     "status": 500
+    },
+    "centre_head.api.highlights.highlights_apis.get_top_enrollment_previous_month": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "message"
+      ],
+      "nested": {
+       "message": "object(2 keys)"
+      }
+     }
+    },
+    "batch_management.api.fc.dashboard.pendding_task": {
+     "status": 200,
+     "onPage": 0,
+     "total": 0,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success"
+      ],
+      "nested": {
+       "data": 0
+      }
+     }
+    },
+    "batch_management.api.fc.dashboard.todays_event": {
+     "status": 500
+    },
+    "centre_head.api.target.target_dashboard.target_highlight": {
+     "status": 404
+    },
+    "centre_head.api.target.target_dashboard.foundation": {
+     "status": 500
+    },
+    "centre_head.api.target.target_dashboard.counselling": {
+     "status": 500
+    },
+    "centre_head.api.dashboard.batch_management.team_person": {
+     "status": 500
+    },
+    "centre_head.api.dashboard.staff_dashboard.staff_list": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(1 keys)"
+      }
+     }
+    },
+    "centre_head.api.dashboard.batch_management.counselling_post_batch_activity": {
+     "status": 500
+    },
+    "centre_head.api.dashboard.batch_management.feedback_post_batch_activity": {
+     "status": 500
+    },
+    "outreach.apis.registration.list.get_all_pathways": {
+     "status": 200,
+     "onPage": 3,
+     "total": 3,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 3
+      }
+     }
+    },
+    "centre_head.api.dashboard.batch_management.schedule_batches": {
+     "status": 404
+    },
+    "centre_head.api.dashboard.batch_management.ongoing_batch": {
+     "status": 200,
+     "onPage": 26,
+     "total": 26,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 26
+      }
+     }
+    },
+    "centre_head.api.approval.list.approval_count_data": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(5 keys)"
+      }
+     }
+    }
+   }
+  },
+  "sp": {
+   "probed": 11,
+   "endpoints": {
+    "youth_skilling.api.batch_management.batch_list": {
+     "status": 200,
+     "onPage": 9,
+     "total": 9,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 9,
+       "count": "object(3 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.utils.get_training_center_list": {
+     "status": 200,
+     "onPage": 2,
+     "total": 2,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 2
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_waiting_for_skilling_count": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(7 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_joining_status": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(4 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.approval.approval_list": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(3 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_interview_schedule": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(3 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_placement_process": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(3 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_youth_activity_schedule": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": []
+     }
+    },
+    "youth_skilling.api.screening.screening_schedule_list": {
+     "status": 500
+    },
+    "youth_skilling.api.screening.screening_test_list": {
+     "status": 500
+    }
+   }
+  },
+  "syc": {
+   "probed": 11,
+   "endpoints": {
+    "youth_skilling.api.dashboard.get_highlights": {
+     "status": 404
+    },
+    "outreach.apis.dashboard.dashboard_api.events": {
+     "status": 200,
+     "onPage": 0,
+     "total": 0,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success"
+      ],
+      "nested": {
+       "data": 0
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_skilling_targets": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(2 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_batch_management_card": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(1 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_waiting_for_skilling_count": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(7 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_youth_activity_schedule": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": []
+     }
+    },
+    "youth_skilling.api.dashboard.get_skilling_repository_data": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(6 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_alerts": {
+     "status": 200,
+     "onPage": 8,
+     "total": 8,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 8
+      }
+     }
+    },
+    "youth_skilling.api.utils.get_training_center_list": {
+     "status": 200,
+     "onPage": 69,
+     "total": 69,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 69
+      }
+     }
+    }
+   }
+  },
+  "sm": {
+   "probed": 16,
+   "endpoints": {
+    "youth_skilling.api.utils.get_training_center_list": {
+     "status": 200,
+     "onPage": 145,
+     "total": 145,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 145
+      }
+     }
+    },
+    "youth_skilling.api.utils.get_region_list": {
+     "status": 200,
+     "onPage": 8,
+     "total": 8,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 8
+      }
+     }
+    },
+    "youth_skilling.api.batch_management.batch_list": {
+     "status": 200,
+     "onPage": 20,
+     "total": 20,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 20,
+       "count": "object(3 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.approval.approval_list": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(3 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.approval.requested_by_list": {
+     "status": 200,
+     "onPage": 21,
+     "total": 21,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 21
+      }
+     }
+    },
+    "youth_skilling.api.approval.approved_by_list": {
+     "status": 200,
+     "onPage": 16,
+     "total": 16,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 16
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_skilling_budget": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(5 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_highlights": {
+     "status": 404
+    },
+    "outreach.apis.dashboard.dashboard_api.events": {
+     "status": 200,
+     "onPage": 0,
+     "total": 0,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success"
+      ],
+      "nested": {
+       "data": 0
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_skilling_targets": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(2 keys)"
+      }
+     }
+    },
+    "outreach.apis.pec.helper.donor_list": {
+     "status": 200,
+     "onPage": 39,
+     "total": 39,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 39
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_batch_management_card": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(1 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_waiting_for_skilling_count": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(7 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_skilling_repository_data": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": "object(6 keys)"
+      }
+     }
+    },
+    "youth_skilling.api.dashboard.get_alerts": {
+     "status": 200,
+     "onPage": 8,
+     "total": 8,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 8
+      }
+     }
+    },
+    "youth_skilling.api.approval.approval_category_list": {
+     "status": 200,
+     "onPage": 5,
+     "total": 5,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key"
+      ],
+      "nested": {
+       "data": 5
+      }
+     }
+    }
+   }
+  },
+  "oc": {
+   "probed": 10,
+   "endpoints": {
+    "batch_management.api.pathway_batch.dashboard.get_scheduled_batches": {
+     "status": 400
+    },
+    "centre_head.api.target.main_dashboard.main_target": {
+     "status": 500
+    },
+    "outreach.apis.dashboard.dashboard_api.get_low_enquiry_areas": {
+     "status": 200,
+     "onPage": 10,
+     "total": 10,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success_key",
+       "total_count"
+      ],
+      "nested": {
+       "data": 10
+      }
+     }
+    },
+    "outreach.apis.dashboard.dashboard_api.enquiry": {
+     "status": 500
+    },
+    "outreach.apis.highlights.oc_highlights.get_dashboard_data": {
+     "status": 200,
+     "onPage": null,
+     "total": null,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "message"
+      ],
+      "nested": {
+       "message": "object(2 keys)"
+      }
+     }
+    },
+    "outreach.apis.dashboard.dashboard_api.events": {
+     "status": 200,
+     "onPage": 0,
+     "total": 0,
+     "pages": null,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "data",
+       "message",
+       "success"
+      ],
+      "nested": {
+       "data": 0
+      }
+     }
+    },
+    "outreach.apis.widgets.pre_enquiry.pre_enquiry_dashboard": {
+     "status": 500
+    },
+    "outreach.apis.pre_enquiry.list.get_pre_enquiries": {
+     "status": 200,
+     "onPage": 20,
+     "total": 957,
+     "pages": 48,
+     "shape": {
+      "t": "object",
+      "keys": [
+       "count",
+       "data",
+       "message",
+       "success_key",
+       "total_data_count",
+       "total_pages"
+      ],
+      "nested": {
+       "data": 20
+      }
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,55 @@
+[
+ {
+  "object": "Course",
+  "ep": "youth_skilling.api.skilling_repository.add_course",
+  "persona": "sm",
+  "seed": {
+   "step": "1",
+   "course_name": "QA Course Auto",
+   "course_category": "QA-Course Category-Charlie-0002",
+   "onboarding_date": "2026-07-01",
+   "course_type": "Free",
+   "screening_test_required": "No",
+   "skilling_partner": "QA Synthetic Partner_QA Region Bravo",
+   "center": "aijj6jpu4v",
+   "certificate_issuing_authority": "QA-Certificate Issuin-Charlie-0002",
+   "lighthouse_centre": "QA North Centre"
+  }
+ },
+ {
+  "object": "Community Visit",
+  "ep": "outreach.apis.outreach_planning.community_visit.form.create",
+  "persona": "oc",
+  "seed": {
+   "data": "{\"community\": \"QA Charlie 0002-QA Alpha 0000\", \"place\": \"QA Place\", \"date\": \"2026-07-01\", \"location\": \"QA West Centre\", \"start_time\": \"10:00:00\", \"end_time\": \"12:00:00\"}"
+  }
+ },
+ {
+  "object": "Registration Form B",
+  "ep": "facilitator_and_counsellor.api.registration_form_B.form.create_form",
+  "persona": "fc",
+  "seed": {
+   "data": "{\"youth\": \"YOUTH-00017\"}"
+  }
+ },
+ {
+  "object": "Youth add_remarks",
+  "ep": "youth_skilling.api.actions.add_remarks",
+  "verb": "POST",
+  "persona": "sp",
+  "seed": {
+   "youth_id": "YOUTH-00016",
+   "stage": "Standby",
+   "short_remarks": "QA",
+   "long_remarks": "QA remark"
+  }
+ },
+ {
+  "object": "Enquiry Form",
+  "ep": "outreach.api.create_enquiry",
+  "persona": "oc",
+  "seed": {
+   "params": "{\"first_name\": \"QA\", \"last_name\": \"Auto\", \"dob\": \"2005-01-01\", \"gender\": \"Other\", \"phone_no\": \"9000066666\", \"contact_details\": \"Self\", \"address_line_1\": \"a\", \"state\": \"s\", \"city\": \"c\", \"pin_code\": \"560001\", \"what_looking_for\": [\"QA-Career Assistance-Bravo-0001\"], \"education\": \"QA-Education-Bravo-0001\", \"found_lighthouse_at\": \"QA-Lighthouse Referra-Bravo-0001\", \"name_of_the_source\": \"s\", \"lighthouse_location\": \"QA North Centre\"}"
+  }
+ }
+]

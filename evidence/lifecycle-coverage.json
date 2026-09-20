@@ -1,0 +1,74 @@
+{
+ "Skilling Issue": {
+  "persona": "sp",
+  "create": "PASS",
+  "_created": "SKI-ISS-2026-00008",
+  "read": "PASS",
+  "update": "FAIL(403)",
+  "stateChange": "FAIL(403)",
+  "delete": "N/A (no delete endpoint)"
+ },
+ "Follow Up": {
+  "persona": "sp",
+  "create": "PASS",
+  "_created": "FOLLOW-UP-00008",
+  "read": "PASS",
+  "update": "PASS",
+  "stateChange": "FAIL(403)",
+  "delete": "N/A (no delete endpoint)"
+ },
+ "Approval": {
+  "persona": "ch",
+  "create": "PASS",
+  "_created": "APR-09-26-0015",
+  "read": "PASS",
+  "update": "PASS",
+  "stateChange": "N/A",
+  "delete": "N/A (no delete endpoint)"
+ },
+ "Community Visit": {
+  "persona": "oc",
+  "create": "PASS",
+  "_created": "Visit",
+  "read": "FAIL(404)",
+  "update": "FAIL(400)",
+  "stateChange": "FAIL(403)",
+  "delete": "N/A (no delete endpoint)"
+ },
+ "Counselling": {
+  "persona": "fc",
+  "create": "PASS",
+  "_created": "Counselling-20-09-26-000017",
+  "read": "PASS",
+  "update": "PASS",
+  "stateChange": "FAIL(403)",
+  "delete": "N/A (no delete endpoint)"
+ },
+ "Enquiry Form": {
+  "persona": "oc",
+  "create": "PASS",
+  "_created": "ENQUIRY-000005",
+  "read": "PASS",
+  "update": "PASS",
+  "stateChange": "FAIL(500)",
+  "delete": "N/A (no delete endpoint)"
+ },
+ "Pre Enquiry": {
+  "persona": "oc",
+  "create": "PASS",
+  "_created": "PRE-ENQ-00005",
+  "read": "PASS",
+  "update": "PASS",
+  "stateChange": "PASS",
+  "delete": "N/A (no delete endpoint)"
+ },
+ "Task": {
+  "persona": "fc",
+  "create": "PASS",
+  "_created": "TASK-2026-00050",
+  "read": "PASS",
+  "update": "PASS",
+  "stateChange": "PASS",
+  "delete": "N/A (no delete endpoint)"
+ }
+}

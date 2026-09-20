@@ -1,0 +1,44 @@
+[
+ {
+  "ep": "create_task",
+  "empty": "CRASH",
+  "emptyStatus": 500,
+  "badRefs": "200-FAIL",
+  "badStatus": 200
+ },
+ {
+  "ep": "create_pre_enquiry",
+  "empty": "CRASH",
+  "emptyStatus": 500,
+  "badRefs": "CLEAN",
+  "badStatus": 400
+ },
+ {
+  "ep": "create_enquiry",
+  "empty": "CRASH",
+  "emptyStatus": 500,
+  "badRefs": "CRASH",
+  "badStatus": 500
+ },
+ {
+  "ep": "close_batch",
+  "empty": "200-FAIL",
+  "emptyStatus": 200,
+  "badRefs": "200-FAIL",
+  "badStatus": 200
+ },
+ {
+  "ep": "raise_invoice",
+  "empty": "CRASH",
+  "emptyStatus": 500,
+  "badRefs": "CLEAN",
+  "badStatus": 400
+ },
+ {
+  "ep": "create",
+  "empty": "CRASH",
+  "emptyStatus": 500,
+  "badRefs": "CLEAN",
+  "badStatus": 400
+ }
+]

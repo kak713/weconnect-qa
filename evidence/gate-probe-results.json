@@ -1,0 +1,398 @@
+[
+ {
+  "path": "authentication.authentication.api.registration.create_user",
+  "methods": [
+   "POST"
+  ],
+  "app": "authentication",
+  "fn": "create_user",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command authenti"
+ },
+ {
+  "path": "authentication.authentication.api.password.send_otp",
+  "methods": [
+   "POST"
+  ],
+  "app": "authentication",
+  "fn": "send_otp",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command authenti"
+ },
+ {
+  "path": "authentication.authentication.api.password.verify_otp",
+  "methods": [
+   "POST"
+  ],
+  "app": "authentication",
+  "fn": "verify_otp",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command authenti"
+ },
+ {
+  "path": "authentication.authentication.api.password.reset_password",
+  "methods": [
+   "POST"
+  ],
+  "app": "authentication",
+  "fn": "reset_password",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command authenti"
+ },
+ {
+  "path": "event_management.apis.calendar.create_event",
+  "methods": [
+   "POST"
+  ],
+  "app": "event-management",
+  "fn": "create_event",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: create_event() missing 1 required positional argument: 'data'\",\"e"
+ },
+ {
+  "path": "event_management.apis.calendar.update_event",
+  "methods": [
+   "PUT"
+  ],
+  "app": "event-management",
+  "fn": "update_event",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: update_event() missing 1 required positional argument: 'data'\",\"e"
+ },
+ {
+  "path": "event_management.apis.calendar.visit_summory",
+  "methods": [
+   "PUT"
+  ],
+  "app": "event-management",
+  "fn": "visit_summory",
+  "status": 200,
+  "outcome": "NO GATE",
+  "snippet": "{\"success\":0,\"message\":\"Id QA-NONEXISTENT-000 invalid.\"}"
+ },
+ {
+  "path": "facilitator_and_counsellor.api.counselling.form.assign_recounselling",
+  "methods": [
+   "POST"
+  ],
+  "app": "facilitator-and-counsellor",
+  "fn": "assign_recounselling",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: assign_recounselling() missing 2 required positional arguments: '"
+ },
+ {
+  "path": "facilitator_and_counsellor.api.registration_form_B.files.upload_file",
+  "methods": [
+   "PUT"
+  ],
+  "app": "facilitator-and-counsellor",
+  "fn": "upload_file",
+  "status": 400,
+  "outcome": "NO GATE",
+  "snippet": "{\"success_key\":0,\"message\":\"File/Attachment is required\"}"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry.add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "add_call_details",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.registration.actions.add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "add_call_details",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry_form.actions.add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "add_call_details",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.pre_enquiry.actions.add_call_details",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "add_call_details",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry.update_status",
+  "methods": [
+   "PUT"
+  ],
+  "app": "outreach",
+  "fn": "update_status",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.registration.actions.update_status",
+  "methods": [
+   "PUT"
+  ],
+  "app": "outreach",
+  "fn": "update_status",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry_form.form.update_status",
+  "methods": [
+   "PUT"
+  ],
+  "app": "outreach",
+  "fn": "update_status",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry.schedule_visit",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "schedule_visit",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.enquiry_form.actions.schedule_visit",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "schedule_visit",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.pec.helper.send_mobile_verify_otp",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "send_mobile_verify_otp",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.pec.helper.verify_mobile_otp",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "verify_mobile_otp",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "outreach.outreach.apis.registration.files.delete_file_by_url",
+  "methods": [
+   "POST"
+  ],
+  "app": "outreach",
+  "fn": "delete_file_by_url",
+  "status": 417,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"frappe.exceptions.ValidationError: Failed to get method for command outreach"
+ },
+ {
+  "path": "youth_placement.api.actions.toggle_bookmark",
+  "methods": [
+   "POST"
+  ],
+  "app": "placement",
+  "fn": "toggle_bookmark",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: toggle_bookmark() missing 2 required positional arguments: 'refer"
+ },
+ {
+  "path": "youth_skilling.api.skilling_repository.discontinue_course",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "discontinue_course",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: discontinue_course() missing 2 required positional arguments: 'co"
+ },
+ {
+  "path": "youth_skilling.api.skilling_repository.reactivate_course",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "reactivate_course",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: reactivate_course() missing 2 required positional arguments: 'cou"
+ },
+ {
+  "path": "youth_skilling.api.skilling_repository.discontinue_skilling_partner",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "discontinue_skilling_partner",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: discontinue_skilling_partner() missing 2 required positional argu"
+ },
+ {
+  "path": "youth_skilling.api.skilling_repository.reactivate_skilling_partner",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "reactivate_skilling_partner",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: reactivate_skilling_partner() missing 2 required positional argum"
+ },
+ {
+  "path": "youth_skilling.api.curriculum.move_activity",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "move_activity",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: move_activity() missing 2 required positional arguments: 'skillin"
+ },
+ {
+  "path": "youth_skilling.api.screening.screening_reattempt",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "screening_reattempt",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: screening_reattempt() missing 1 required positional argument: 'yo"
+ },
+ {
+  "path": "youth_skilling.api.screening.rejection_withdrawal",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "rejection_withdrawal",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: rejection_withdrawal() missing 1 required positional argument: 'y"
+ },
+ {
+  "path": "youth_skilling.api.assignment.assign_assignment",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "assign_assignment",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: assign_assignment() missing 2 required positional arguments: 'ski"
+ },
+ {
+  "path": "youth_skilling.api.batch_management.raise_batch_fill_request",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "raise_batch_fill_request",
+  "status": 200,
+  "outcome": "NO GATE",
+  "snippet": "{\"success_key\":0,\"message\":\"batch_id is required.\",\"data\":{}}"
+ },
+ {
+  "path": "youth_skilling.api.batch_management.close_batch",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "close_batch",
+  "status": 200,
+  "outcome": "NO GATE",
+  "snippet": "{\"success_key\":0,\"message\":\"Missing required fields: batch_id, short_remarks.\",\"data\":{}}"
+ },
+ {
+  "path": "youth_skilling.api.batch_management.withdraw_batch",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "withdraw_batch",
+  "status": 200,
+  "outcome": "NO GATE",
+  "snippet": "{\"success_key\":0,\"message\":\"Missing required fields: batch_id.\",\"data\":{}}"
+ },
+ {
+  "path": "youth_skilling.api.invoice.prepare_tax_invoice",
+  "methods": [
+   "POST"
+  ],
+  "app": "skilling",
+  "fn": "prepare_tax_invoice",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: prepare_tax_invoice() missing 3 required positional arguments: 'b"
+ },
+ {
+  "path": "youth_skilling.api.invoice.raise_invoice",
+  "methods": [
+   "PUT"
+  ],
+  "app": "skilling",
+  "fn": "raise_invoice",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: raise_invoice() missing 4 required positional arguments: 'invoice"
+ },
+ {
+  "path": "youth_skilling.api.invoice.upload_student_declaration",
+  "methods": [
+   "PUT"
+  ],
+  "app": "skilling",
+  "fn": "upload_student_declaration",
+  "status": 500,
+  "outcome": "NO GATE",
+  "snippet": "{\"exception\":\"TypeError: upload_student_declaration() missing 1 required positional argume"
+ }
+]

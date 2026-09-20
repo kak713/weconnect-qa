@@ -1,0 +1,84 @@
+name: weconnect-qa
+
+# Isolated WeConnect QA stack. Bound to 127.0.0.1 only — this environment must never be
+# reachable from outside the machine, and the binding is the structural guarantee of that.
+services:
+  db:
+    image: mariadb:10.6
+    command: [--character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci,
+              --skip-character-set-client-handshake, --skip-innodb-read-only-compressed]
+    environment: { MARIADB_ROOT_PASSWORD: qa_only_local }
+    volumes: [db-data:/var/lib/mysql]
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      retries: 30
+
+  redis-cache: { image: redis:6.2-alpine, volumes: [redis-cache:/data] }
+  redis-queue: { image: redis:6.2-alpine, volumes: [redis-queue:/data] }
+
+  backend: &app
+    image: weconnect-qa:15
+    depends_on:
+      db: { condition: service_healthy }
+    volumes: [sites:/home/frappe/frappe-bench/sites]
+    environment: &env
+      DB_HOST: db
+      DB_PORT: "3306"
+      REDIS_CACHE: redis-cache:6379
+      REDIS_QUEUE: redis-queue:6379
+      SOCKETIO_PORT: "9000"
+
+  configurator:
+    <<: *app
+    entrypoint: ["bash", "-c"]
+    command:
+      - >
+        bench set-config -g db_host $$DB_HOST &&
+        bench set-config -gp db_port $$DB_PORT &&
+        bench set-config -g redis_cache "redis://$$REDIS_CACHE" &&
+        bench set-config -g redis_queue "redis://$$REDIS_QUEUE" &&
+        bench set-config -g redis_socketio "redis://$$REDIS_QUEUE" &&
+        bench set-config -gp socketio_port $$SOCKETIO_PORT
+    depends_on: {}
+    restart: "no"
+
+  frontend:
+    image: weconnect-qa:15
+    command: [nginx-entrypoint.sh]
+    environment:
+      BACKEND: backend:8000
+      SOCKETIO: websocket:9000
+      FRAPPE_SITE_NAME_HEADER: qa.localhost
+      UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
+      UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
+      UPSTREAM_REAL_IP_RECURSIVE: "off"
+    volumes: [sites:/home/frappe/frappe-bench/sites]
+    depends_on:
+      backend: { condition: service_started }
+      websocket: { condition: service_started }
+    ports: ["127.0.0.1:8080:8080"]   # localhost only, deliberately
+
+  websocket:
+    image: weconnect-qa:15
+    command: [node, /home/frappe/frappe-bench/apps/frappe/socketio.js]
+    environment: *env
+    volumes: [sites:/home/frappe/frappe-bench/sites]
+    # socketio.js reads redis config from common_site_config.json, which the configurator writes.
+    # Starting before it exists sends the socket to 127.0.0.1:6379 and the container dies; nginx
+    # then fails to resolve the upstream and dies too. Order this explicitly.
+    depends_on:
+      redis-queue: { condition: service_started }
+      configurator: { condition: service_completed_successfully }
+
+  queue-short:
+    <<: *app
+    command: [bench, worker, --queue, "short,default"]
+  queue-long:
+    <<: *app
+    command: [bench, worker, --queue, "long,default,short"]
+  scheduler:
+    <<: *app
+    command: [bench, schedule]
+
+volumes: { db-data: , redis-cache: , redis-queue: , sites: }

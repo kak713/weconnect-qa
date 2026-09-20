@@ -1,0 +1,1401 @@
+{
+  "_note": "Write surface grouped by business object and risk tier. Operation names are the applications' own; tiers are inferred from those names and are a plan, not a contract — each is confirmed by observing the actual request in Phase 2.",
+  "_generated": "2026-09-19T18:41:23.567Z",
+  "totals": {
+    "DESTRUCTIVE": 5,
+    "CREATE": 34,
+    "STATE": 34,
+    "MUTATE": 23,
+    "UNVERIFIED": 7
+  },
+  "objects": {
+    "Batch": {
+      "total": 13,
+      "tiers": {
+        "DESTRUCTIVE": 1,
+        "STATE": 6,
+        "MUTATE": 1,
+        "UNVERIFIED": 3,
+        "CREATE": 2
+      },
+      "personas": [
+        "fc",
+        "oc",
+        "sp",
+        "sm"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "batch_management.api.pathway_batch.form.mark_as_deleted",
+          "tier": "DESTRUCTIVE",
+          "ops": [
+            "deleteBatch"
+          ],
+          "personas": [
+            "fc",
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.pathway_batch.form.update_status",
+          "tier": "STATE",
+          "ops": [
+            "closeBatch"
+          ],
+          "personas": [
+            "fc",
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.pathway_batch.form.edit_batch",
+          "tier": "MUTATE",
+          "ops": [
+            "editBatch"
+          ],
+          "personas": [
+            "fc",
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.dashboard.batch_list_post",
+          "tier": "UNVERIFIED",
+          "ops": [
+            "postBatchList"
+          ],
+          "personas": [
+            "fc",
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.batch_activity.complete_activity",
+          "tier": "STATE",
+          "ops": [
+            "updateCompleteActivity"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.dashboard.post_batch_rating",
+          "tier": "UNVERIFIED",
+          "ops": [
+            "postBatchRating"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.dashboard.post_batch_remarks",
+          "tier": "UNVERIFIED",
+          "ops": [
+            "postBatchRemarks"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.batch_management.mark_attendance",
+          "tier": "STATE",
+          "ops": [
+            "editAttendance"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.batch_management.mark_holiday",
+          "tier": "STATE",
+          "ops": [
+            "markHoliday"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.batch_management.close_batch",
+          "tier": "STATE",
+          "ops": [
+            "closeBatch"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.batch_management.mark_as_complete",
+          "tier": "STATE",
+          "ops": [
+            "markAsCompleted"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.batch_management.raise_batch_fill_request",
+          "tier": "CREATE",
+          "ops": [
+            "raiseRequestToFillBatch"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.pathway_batch.form.create",
+          "tier": "CREATE",
+          "ops": [
+            "createBatch"
+          ],
+          "personas": [
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Invoice": {
+      "total": 12,
+      "tiers": {
+        "CREATE": 6,
+        "STATE": 4,
+        "DESTRUCTIVE": 1,
+        "MUTATE": 1
+      },
+      "personas": [
+        "ch",
+        "sp",
+        "sm"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "centre_head.api.pending_request.pendign_request_table.create_invoice",
+          "tier": "CREATE",
+          "ops": [
+            "createInvoice"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.pending_request.pendign_request_table.update_invoice",
+          "tier": "STATE",
+          "ops": [
+            "updateInvoice"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.pending_request.pendign_request_table.invoice_status",
+          "tier": "STATE",
+          "ops": [
+            "updateInvoiceDetails"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.pending_request.pendign_request_table.delete_invoice",
+          "tier": "DESTRUCTIVE",
+          "ops": [
+            "deleteInvoice"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.invoice.update_invoice_date",
+          "tier": "MUTATE",
+          "ops": [
+            "updateInvoiceDate"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.invoice.raise_invoice",
+          "tier": "CREATE",
+          "ops": [
+            "raiseInvoice"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.invoice.resubmit_invoice",
+          "tier": "CREATE",
+          "ops": [
+            "reSubmitInvoice"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.invoice.upload_declaration",
+          "tier": "CREATE",
+          "ops": [
+            "uploadDeclaration"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.invoice.upload_student_declaration",
+          "tier": "CREATE",
+          "ops": [
+            "uploadStudentDeclaration"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.invoice.mark_as_pending",
+          "tier": "STATE",
+          "ops": [
+            "markAsCHPending"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.invoice.send_reminder_to_sp",
+          "tier": "CREATE",
+          "ops": [
+            "sendRemainder"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.invoice.update_invoice_status",
+          "tier": "STATE",
+          "ops": [
+            "updateInvocieStatus"
+          ],
+          "personas": [
+            "sm"
+          ]
+        }
+      ]
+    },
+    "Counselling": {
+      "total": 10,
+      "tiers": {
+        "STATE": 2,
+        "MUTATE": 3,
+        "CREATE": 3,
+        "UNVERIFIED": 2
+      },
+      "personas": [
+        "fc",
+        "syc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "facilitator_and_counsellor.api.counselling.actions.mark_as_dropoff",
+          "tier": "STATE",
+          "ops": [
+            "markAsStandByDropOff",
+            "markAsDropOff"
+          ],
+          "personas": [
+            "fc",
+            "syc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.career_counselling.form.update_individual_counselling",
+          "tier": "MUTATE",
+          "ops": [
+            "updateIndividualCounselling"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.career_counselling.form.update_batch_counselling",
+          "tier": "MUTATE",
+          "ops": [
+            "updateBatchCounselling"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.counselling.actions.reschedule",
+          "tier": "CREATE",
+          "ops": [
+            "createRescheduleCounsellingData"
+          ],
+          "personas": [
+            "fc",
+            "syc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.counselling.actions.reschedule_group_based",
+          "tier": "CREATE",
+          "ops": [
+            "createRescheduleGroupBasedCounsellingData"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.counselling.actions.add_call_details",
+          "tier": "STATE",
+          "ops": [
+            "updateCallStatusModal"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.career_counselling.dashboard.counselling_note",
+          "tier": "UNVERIFIED",
+          "ops": [
+            "updateGeneralCounsellingDetails"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.career_counselling.family_counselling.family_counselling_note",
+          "tier": "MUTATE",
+          "ops": [
+            "updateFamilyCounsellingDetails"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.dashboard.career_counselling_progress",
+          "tier": "UNVERIFIED",
+          "ops": [
+            "postBatchCareerCounsellingProgress"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.counselling.form.create",
+          "tier": "CREATE",
+          "ops": [
+            "createScheduleCounselling"
+          ],
+          "personas": [
+            "syc"
+          ]
+        }
+      ]
+    },
+    "Youth": {
+      "total": 6,
+      "tiers": {
+        "MUTATE": 1,
+        "STATE": 3,
+        "CREATE": 2
+      },
+      "personas": [
+        "fc",
+        "sp",
+        "syc",
+        "sm"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "batch_management.api.fc.feedback.rate_youth",
+          "tier": "MUTATE",
+          "ops": [
+            "updateRateYouthList"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.badges.badge_api.overall_badges",
+          "tier": "STATE",
+          "ops": [
+            "assignBadgesToYouth"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.youth_interest.add_interest",
+          "tier": "CREATE",
+          "ops": [
+            "addYouthInterest"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.actions.update_youth_status",
+          "tier": "STATE",
+          "ops": [
+            "updateYouthStatus",
+            "markAsStandbyDropOff"
+          ],
+          "personas": [
+            "sp",
+            "syc",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.actions.add_remarks",
+          "tier": "CREATE",
+          "ops": [
+            "addRemarksToYouth"
+          ],
+          "personas": [
+            "sp",
+            "syc",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.badge.assign_badge",
+          "tier": "STATE",
+          "ops": [
+            "assignBadgeToYouth"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        }
+      ]
+    },
+    "Assessment / Test": {
+      "total": 6,
+      "tiers": {
+        "UNVERIFIED": 1,
+        "STATE": 3,
+        "CREATE": 1,
+        "MUTATE": 1
+      },
+      "personas": [
+        "fc",
+        "sp",
+        "sm"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "batch_management.api.fc.dashboard.post_completion_submission",
+          "tier": "UNVERIFIED",
+          "ops": [
+            "postCompletionSubmission"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.assesment.assign_test",
+          "tier": "STATE",
+          "ops": [
+            "updateAssesmentAssignTest"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.screening.mark_screening_test_absent",
+          "tier": "STATE",
+          "ops": [
+            "markScreeningTestAbsent"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.screening.submit_screening_test",
+          "tier": "CREATE",
+          "ops": [
+            "submitScreeningTest"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.assessment.add_assessment_score",
+          "tier": "MUTATE",
+          "ops": [
+            "updateAssessmentScore"
+          ],
+          "personas": [
+            "sp"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.skilling_issue.update_issue_status",
+          "tier": "STATE",
+          "ops": [
+            "updateStatus"
+          ],
+          "personas": [
+            "sm"
+          ]
+        }
+      ]
+    },
+    "Registration": {
+      "total": 6,
+      "tiers": {
+        "CREATE": 2,
+        "MUTATE": 2,
+        "STATE": 1,
+        "DESTRUCTIVE": 1
+      },
+      "personas": [
+        "fc",
+        "oc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "facilitator_and_counsellor.api.registration_form_B.form.create_form",
+          "tier": "CREATE",
+          "ops": [
+            "create_form_B"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "facilitator_and_counsellor.api.registration_form_B.form.update_form",
+          "tier": "MUTATE",
+          "ops": [
+            "update_form_B"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.registration.actions.update_status",
+          "tier": "STATE",
+          "ops": [
+            "markAsRegistrationStandByDropOff"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.registration.form.update_form",
+          "tier": "MUTATE",
+          "ops": [
+            "updateRegForm"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.registration.files.upload_file",
+          "tier": "CREATE",
+          "ops": [
+            "uploadRegistrationDocuments"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.registration.files.delete_file_by_url",
+          "tier": "DESTRUCTIVE",
+          "ops": [
+            "deleteUploadedFile"
+          ],
+          "personas": [
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Outreach / Visit": {
+      "total": 6,
+      "tiers": {
+        "STATE": 2,
+        "CREATE": 2,
+        "DESTRUCTIVE": 1,
+        "MUTATE": 1
+      },
+      "personas": [
+        "oc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "outreach.apis.pec.actions.update_visit_status",
+          "tier": "STATE",
+          "ops": [
+            "updateVisitStatus"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.outreach_planning.community_visit.form.create",
+          "tier": "CREATE",
+          "ops": [
+            "createOutreachPlan"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.outreach_planning.community_visit.form.add_participants",
+          "tier": "CREATE",
+          "ops": [
+            "addParticipantsList"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.outreach_planning.community_visit.form.remove_participants",
+          "tier": "DESTRUCTIVE",
+          "ops": [
+            "removeParticipantsList"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.outreach_planning.community_visit.form.update",
+          "tier": "MUTATE",
+          "ops": [
+            "updateVisitFormData"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.outreach_planning.community_visit.form.mark_complete",
+          "tier": "STATE",
+          "ops": [
+            "markPlanAsCompleted"
+          ],
+          "personas": [
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Attendance": {
+      "total": 5,
+      "tiers": {
+        "STATE": 4,
+        "CREATE": 1
+      },
+      "personas": [
+        "fc",
+        "oc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "batch_management.api.fc.attendance.mark",
+          "tier": "STATE",
+          "ops": [
+            "markAttendance"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.attendance.edit",
+          "tier": "STATE",
+          "ops": [
+            "editAttendance"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.attendance.mark_as_dropoff",
+          "tier": "STATE",
+          "ops": [
+            "markDropOff"
+          ],
+          "personas": [
+            "fc",
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.attendance.add_call_details",
+          "tier": "CREATE",
+          "ops": [
+            "addCallDetails"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "batch_management.api.fc.attendance.edit_pre_fc",
+          "tier": "STATE",
+          "ops": [
+            "editAttendance"
+          ],
+          "personas": [
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Approval": {
+      "total": 5,
+      "tiers": {
+        "UNVERIFIED": 1,
+        "MUTATE": 1,
+        "CREATE": 3
+      },
+      "personas": [
+        "ch",
+        "sp",
+        "syc",
+        "sm",
+        "oc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "centre_head.api.dashboard.individual_task_approval.approval_task",
+          "tier": "UNVERIFIED",
+          "ops": [
+            "approveTasksAPI"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.approval.form.update",
+          "tier": "MUTATE",
+          "ops": [
+            "updateApproval"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.approval.update",
+          "tier": "CREATE",
+          "ops": [
+            "submitApproval"
+          ],
+          "personas": [
+            "sp",
+            "syc",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.approval.add_approval_call_details",
+          "tier": "CREATE",
+          "ops": [
+            "addApprovalCallDetails"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.approval.form.create",
+          "tier": "CREATE",
+          "ops": [
+            "createApprovalForm"
+          ],
+          "personas": [
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Enquiry": {
+      "total": 5,
+      "tiers": {
+        "STATE": 2,
+        "CREATE": 2,
+        "MUTATE": 1
+      },
+      "personas": [
+        "oc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "outreach.apis.enquiry.update_status",
+          "tier": "STATE",
+          "ops": [
+            "updateStandByDropOff",
+            "markEnquiryAsStandbyDropOff"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.api.create_enquiry",
+          "tier": "CREATE",
+          "ops": [
+            "createEnquiry"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.api.update_enquiry_form",
+          "tier": "MUTATE",
+          "ops": [
+            "updateEnquiryForm"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.pre_enquiry.form.create_pre_enquiry",
+          "tier": "CREATE",
+          "ops": [
+            "createPreEnquiry"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.pre_enquiry.actions.mark_status",
+          "tier": "STATE",
+          "ops": [
+            "markPreEnquiryAsDropOffStandby"
+          ],
+          "personas": [
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Expense": {
+      "total": 4,
+      "tiers": {
+        "CREATE": 1,
+        "STATE": 2,
+        "DESTRUCTIVE": 1
+      },
+      "personas": [
+        "ch"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "centre_head.api.pending_request.pendign_request_table.create_expense",
+          "tier": "CREATE",
+          "ops": [
+            "createExpense"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.pending_request.pendign_request_table.update_expense",
+          "tier": "STATE",
+          "ops": [
+            "updateExpense"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.pending_request.pendign_request_table.delete_expense",
+          "tier": "DESTRUCTIVE",
+          "ops": [
+            "deleteExpense"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.pending_request.pendign_request_table.expense_status",
+          "tier": "STATE",
+          "ops": [
+            "updateExpenseStatus"
+          ],
+          "personas": [
+            "ch"
+          ]
+        }
+      ]
+    },
+    "Target / Budget": {
+      "total": 4,
+      "tiers": {
+        "CREATE": 1,
+        "MUTATE": 3
+      },
+      "personas": [
+        "ch"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "centre_head.api.target.program_wise_target.add_funnel",
+          "tier": "CREATE",
+          "ops": [
+            "createFunnel"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.target.target_planing.update_quater_target",
+          "tier": "MUTATE",
+          "ops": [
+            "saveProgramWiseTargetsPanning"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.target.target_planing.update_donor_quater_target",
+          "tier": "MUTATE",
+          "ops": [
+            "saveProgramWiseDonorTargetsPlanning"
+          ],
+          "personas": [
+            "ch"
+          ]
+        },
+        {
+          "endpoint": "centre_head.api.target.target_planing.update_quaterly_person_table",
+          "tier": "MUTATE",
+          "ops": [
+            "updateTargetofEmployees"
+          ],
+          "personas": [
+            "ch"
+          ]
+        }
+      ]
+    },
+    "Course / Curriculum": {
+      "total": 4,
+      "tiers": {
+        "CREATE": 2,
+        "MUTATE": 2
+      },
+      "personas": [
+        "sm"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "youth_skilling.api.skilling_repository.add_skilling_partner",
+          "tier": "CREATE",
+          "ops": [
+            "addSkillingPartner"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.skilling_repository.add_course",
+          "tier": "CREATE",
+          "ops": [
+            "addCourse"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.skilling_repository.edit_skilling_partner",
+          "tier": "MUTATE",
+          "ops": [
+            "updateSkillingPartner"
+          ],
+          "personas": [
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.skilling_repository.edit_course",
+          "tier": "MUTATE",
+          "ops": [
+            "updateSkillingCourse"
+          ],
+          "personas": [
+            "sm"
+          ]
+        }
+      ]
+    },
+    "Task": {
+      "total": 3,
+      "tiers": {
+        "CREATE": 1,
+        "MUTATE": 1,
+        "STATE": 1
+      },
+      "personas": [
+        "fc",
+        "ch",
+        "sp",
+        "syc",
+        "sm",
+        "oc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "outreach.apis.task.task.create_task",
+          "tier": "CREATE",
+          "ops": [
+            "createTask"
+          ],
+          "personas": [
+            "fc",
+            "ch",
+            "sp",
+            "syc",
+            "sm",
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.task.task.update_task",
+          "tier": "MUTATE",
+          "ops": [
+            "updateTask"
+          ],
+          "personas": [
+            "fc",
+            "ch",
+            "sp",
+            "syc",
+            "sm",
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.task.task.update_task_status",
+          "tier": "STATE",
+          "ops": [
+            "markAsCompletedTask"
+          ],
+          "personas": [
+            "fc",
+            "ch",
+            "sp",
+            "syc",
+            "sm",
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Screening": {
+      "total": 3,
+      "tiers": {
+        "MUTATE": 1,
+        "STATE": 2
+      },
+      "personas": [
+        "fc",
+        "sp",
+        "sm"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "youth_skilling.api.screening.screening_reattempt",
+          "tier": "MUTATE",
+          "ops": [
+            "updateReattemptScreening"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.screening.rejection_withdrawal",
+          "tier": "STATE",
+          "ops": [
+            "updateWithdrawalScreening"
+          ],
+          "personas": [
+            "fc"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.actions.update_screening_status",
+          "tier": "STATE",
+          "ops": [
+            "updateRequestReschedule"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        }
+      ]
+    },
+    "Skilling Issue": {
+      "total": 3,
+      "tiers": {
+        "CREATE": 2,
+        "MUTATE": 1
+      },
+      "personas": [
+        "sp",
+        "syc",
+        "sm"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "youth_skilling.api.skilling_issue.raise_issue",
+          "tier": "CREATE",
+          "ops": [
+            "raiseIssueCTA"
+          ],
+          "personas": [
+            "sp",
+            "syc",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.utils.skilling_issue_category",
+          "tier": "CREATE",
+          "ops": [
+            "issueCategory"
+          ],
+          "personas": [
+            "sp",
+            "syc",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.skilling_issue.update_issue",
+          "tier": "MUTATE",
+          "ops": [
+            "updateRaiseIssue"
+          ],
+          "personas": [
+            "syc",
+            "sm"
+          ]
+        }
+      ]
+    },
+    "Follow-up": {
+      "total": 3,
+      "tiers": {
+        "MUTATE": 1,
+        "CREATE": 1,
+        "STATE": 1
+      },
+      "personas": [
+        "sp",
+        "sm",
+        "syc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "youth_skilling.api.follow_up.edit_followup",
+          "tier": "MUTATE",
+          "ops": [
+            "editfollowUps"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.follow_up.send_followup_reminder",
+          "tier": "CREATE",
+          "ops": [
+            "sendRemainderfollowUps"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        },
+        {
+          "endpoint": "youth_skilling.api.follow_up.complete_followup",
+          "tier": "STATE",
+          "ops": [
+            "completeFollowUp"
+          ],
+          "personas": [
+            "syc"
+          ]
+        }
+      ]
+    },
+    "Pre-enrolment (PEC)": {
+      "total": 2,
+      "tiers": {
+        "CREATE": 1,
+        "MUTATE": 1
+      },
+      "personas": [
+        "oc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "outreach.apis.pec.form.create_pec",
+          "tier": "CREATE",
+          "ops": [
+            "postCreatePECForm"
+          ],
+          "personas": [
+            "oc"
+          ]
+        },
+        {
+          "endpoint": "outreach.apis.pec.form.update_pec",
+          "tier": "MUTATE",
+          "ops": [
+            "updatePEC",
+            "updatePECForm"
+          ],
+          "personas": [
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Certificate / Badge": {
+      "total": 1,
+      "tiers": {
+        "CREATE": 1
+      },
+      "personas": [
+        "fc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "facilitator_and_counsellor.api.badges.badge_api.assign_badges",
+          "tier": "CREATE",
+          "ops": [
+            "submitBadges"
+          ],
+          "personas": [
+            "fc"
+          ]
+        }
+      ]
+    },
+    "Profile / Account": {
+      "total": 1,
+      "tiers": {
+        "STATE": 1
+      },
+      "personas": [
+        "fc",
+        "ch",
+        "sp",
+        "syc",
+        "sm",
+        "oc"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "event_management.apis.notifications.mark_as_read",
+          "tier": "STATE",
+          "ops": [
+            "markNotificationAsRead"
+          ],
+          "personas": [
+            "fc",
+            "ch",
+            "sp",
+            "syc",
+            "sm",
+            "oc"
+          ]
+        }
+      ]
+    },
+    "Call": {
+      "total": 1,
+      "tiers": {
+        "MUTATE": 1
+      },
+      "personas": [
+        "sp",
+        "sm"
+      ],
+      "endpoints": [
+        {
+          "endpoint": "youth_skilling.api.call.add_call_details",
+          "tier": "MUTATE",
+          "ops": [
+            "updateCallDetails"
+          ],
+          "personas": [
+            "sp",
+            "sm"
+          ]
+        }
+      ]
+    }
+  }
+}
