@@ -1,35 +1,31 @@
 # Defect tracker
 
-The findings in the format requested for the Bugs sheet: Bug Title, Steps to Reproduce, Expected
-Result, Actual Result, Attachment/Screenshot Reference, plus Previous Day and Today's Report.
+The findings recorded in the requested format: Bug Title, Steps to Reproduce, Expected Result,
+Actual Result and Attachment/Screenshot Reference, with daily progress on a separate tab.
 
-| File | What it is |
+| File | Contents |
 |---|---|
-| `WeConnect-QA-Bug-Tracker.xlsx` | The workbook. Five tabs: Read Me, Bugs, Daily Report, Summary, Observations. |
-| `WeConnect-QA-Bugs.csv` | The Bugs tab alone, for importing straight into Google Sheets. |
-| `WeConnect-QA-Daily-Report.csv` | The daily progress tab alone. |
-| `WeConnect-QA-Observations.csv` | The informational records alone. |
+| `WeConnect-QA-Bug-Tracker.xlsx` | The workbook. Tabs: Read Me, Bugs, Daily Report, Summary, Observations. |
+| `WeConnect-QA-Bugs.csv` | The Bugs tab alone, for import into Google Sheets. |
+| `WeConnect-QA-Daily-Report.csv` | The Daily Report tab alone. |
+| `WeConnect-QA-Observations.csv` | The Observations tab alone. |
 
-**Start on the Read Me tab.** It says which columns are yours to maintain, and which
-columns we could not fill in and why, so you are not left guessing whether a blank is an oversight.
+The Read Me tab carries the column reference, the coverage notes, and the outstanding items.
 
-## Three things worth knowing before you open it
+## Scope of the Bugs tab
 
-**The Bugs tab holds 79 rows, not 119.** The register has 119 entries, but 40 of them are
-informational records rather than defects: context we wrote down while testing. Putting those in a
-bug tracker would inflate the defect count and give you 40 rows nobody can ever close. They are on
-the Observations tab instead.
+The tab holds **79 defects**. The findings register contains 119 entries, of which 40 are
+informational records rather than defects. Those are on the Observations tab, since they cannot be
+assigned or closed and would otherwise distort the defect count.
 
-**Screenshots exist for 5 defects.** Those are the ones where a screen visibly failed. The other 74
-are API or source-code findings with nothing to photograph. For those the Attachment column points
-at the probe output, the script that reproduces the defect, or a one-line re-check command. That is better
-evidence than a picture, because you can run it.
+## Evidence
 
-**23 defects can be re-checked with one command.** The Re-check Command column gives it. It needs
-only Node, installs nothing, and is read-only by default.
+Screen captures exist for 5 defects, being those where a visible screen failed. The remaining 74
+are API-level or source-level findings. Each cites the probe output, the script that reproduces it,
+or a re-check command. Twenty-three carry a command that re-verifies the defect in one line.
 
-## Keeping it current
+## Maintenance
 
-The Summary tab is formulas reading the Bugs tab, so edit Bugs and the counts follow. The pale
-yellow columns — Status, Assigned To, Target Fix Date, Previous Day Status, Today's Status — are
-yours. Everything else traces back to `findings/findings-log.md`, which stays the source of record.
+Status, Assigned To, Target Fix Date, Previous Day Status and Today's Status are shaded pale yellow
+and are maintained by Lighthouse. The Summary tab is formula-driven over the Bugs tab and updates
+when it is edited. `findings/findings-log.md` remains the source of record for every entry.
