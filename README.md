@@ -11,7 +11,9 @@ The automated test suite and the findings from the QA engagement on WeConnect 2.
 3. **`verify/`** — re-check findings against your own environment once you start fixing.
    `node verify/run.mjs`, nothing to install, read-only by default. It covers 23 findings
    mechanically, including 17 of the 17 P1 items.
-4. **`docs/PERMISSION-MODEL-PROPOSAL.md`** — a draft of the permission model the platform is
+4. **`tracker/WeConnect-QA-Bug-Tracker.xlsx`** — the 79 defects in the Bugs-sheet format you
+   asked for, with a Daily Report tab. CSVs alongside it for Google Sheets.
+5. **`docs/PERMISSION-MODEL-PROPOSAL.md`** — a draft of the permission model the platform is
    missing. It gates all three critical findings, so it is the longest pole in any remediation.
 
 ## Contents
@@ -23,6 +25,7 @@ The automated test suite and the findings from the QA engagement on WeConnect 2.
 | `reproductions/` | Standalone scripts to reproduce and re-verify each S1 defect. |
 | `findings/` | The findings register. Every defect, with evidence, a severity and a suggested fix. |
 | `evidence/` | Machine-readable outputs backing the findings. |
+| `tracker/` | The defect tracker in spreadsheet form: Bug Title, Steps to Reproduce, Expected, Actual, Attachment, plus daily progress. |
 | `verify/` | Re-checks findings against your environment and reports which are fixed. |
 | `docs/` | The engagement report and the rest of the written record, including the characterisation document we need signed. |
 
