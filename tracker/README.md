@@ -10,21 +10,20 @@ Result, Actual Result, Attachment/Screenshot Reference, plus Previous Day and To
 | `WeConnect-QA-Daily-Report.csv` | The daily progress tab alone. |
 | `WeConnect-QA-Observations.csv` | The informational records alone. |
 
-**Start on the Read Me tab.** It says which columns are yours to maintain, and — more usefully —
-which columns we could not fill in and why, so you are not left guessing whether a blank is an
-oversight.
+**Start on the Read Me tab.** It says which columns are yours to maintain, and which
+columns we could not fill in and why, so you are not left guessing whether a blank is an oversight.
 
 ## Three things worth knowing before you open it
 
 **The Bugs tab holds 79 rows, not 119.** The register has 119 entries, but 40 of them are
-informational records rather than defects — context we wrote down while testing. Putting those in a
+informational records rather than defects: context we wrote down while testing. Putting those in a
 bug tracker would inflate the defect count and give you 40 rows nobody can ever close. They are on
 the Observations tab instead.
 
 **Screenshots exist for 5 defects.** Those are the ones where a screen visibly failed. The other 74
 are API or source-code findings with nothing to photograph. For those the Attachment column points
-at the probe output, the script that reproduces the defect, or a one-line re-check command — which
-is better evidence than a picture, because you can run it.
+at the probe output, the script that reproduces the defect, or a one-line re-check command. That is better
+evidence than a picture, because you can run it.
 
 **23 defects can be re-checked with one command.** The Re-check Command column gives it. It needs
 only Node, installs nothing, and is read-only by default.
