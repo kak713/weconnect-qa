@@ -1,0 +1,478 @@
+[
+  {
+    "persona": "fc",
+    "route": "(account)",
+    "control": "(login)",
+    "kind": "account-provisioning",
+    "detail": "role_profile=Facilitator and Counsellor permitted_centres=[]"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/counselling",
+    "control": "input \"Search By Name\"",
+    "detail": "403 facilitator_and_counsellor.api.counselling.list.get_counselling_list, 403 facilitator_and_counsellor.api.counselling.list.get_counselling_list",
+    "kind": "403-account-not-provisioned"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/career-counselling",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/assign-career-counselling",
+    "control": "button \"Recounselling\"",
+    "detail": "403 facilitator_and_counsellor.api.counselling.helper.get_lighthouse_centres",
+    "kind": "403-account-not-provisioned"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/start-counselling",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/job-application",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/job-application-edit",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/group-based-counselling",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/counselling-notes",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/attendance",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/feedback",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/youth-interest",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/fc-eng-mid-test",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/fc-eng-post-test",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/batch-finish/remarks",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/workbook-view-submission",
+    "control": "div \"(unlabelled)\"",
+    "detail": "500 batch_management.api.fc.batch_activity.get_activity_list",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/batch-based/batch-list",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/view-feedBack",
+    "control": "(page load)",
+    "kind": "blank-render-crash",
+    "detail": "Cannot destructure property 'youthId' of 't' as it is null."
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/batch-management/edit-batch",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/batch-management/view-attendance",
+    "control": "input \"Search By Name\"",
+    "detail": "400 batch_management.api.fc.attendance.pre_fc_data, 400 batch_management.api.fc.attendance.pre_fc_data",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/fc/view-form-b",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "fc",
+    "route": "/fc/my-profile",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "ch",
+    "route": "(account)",
+    "control": "(login)",
+    "kind": "account-provisioning",
+    "detail": "role_profile=Center Head permitted_centres=[]"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/targets",
+    "control": "button \"Plan Target\"",
+    "detail": "417 centre_head.api.target.target_planing.quarter_list, 417 centre_head.api.target.target_planing.quarter_list",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/batch-management",
+    "control": "div \"(unlabelled)\"",
+    "detail": "404 centre_head.api.dashboard.batch_management.schedule_batches",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/budget-profile",
+    "kind": "js-error-on-load",
+    "control": "(page load)",
+    "detail": "Ve"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/sustainability-target",
+    "control": "button \"Plan Target\"",
+    "detail": "417 centre_head.api.target.target_planing.quarter_list, 417 centre_head.api.target.target_planing.quarter_list",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/program-targets",
+    "kind": "js-error-on-load",
+    "control": "(page load)",
+    "detail": "Ve"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/program-targets",
+    "control": "button \"Plan Target\"",
+    "detail": "417 centre_head.api.target.target_planing.quarter_list, 417 centre_head.api.target.target_planing.quarter_list",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/person-wise-target",
+    "kind": "js-error-on-interaction",
+    "control": "button \"Plan Target\"",
+    "detail": "Ve"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/person-wise-target",
+    "kind": "js-error-on-interaction",
+    "control": "button \"Plan Target\"",
+    "detail": "Ve"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/person-wise-target",
+    "control": "button \"Plan Target\"",
+    "detail": "417 centre_head.api.target.target_planing.person_vise_quater_list, 403 centre_head.api.target.program_target.target_note, 417 centre_head.api.target.target_planing.person_vise_quater_list",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/person-wise-target-planning",
+    "kind": "js-error-on-load",
+    "control": "(page load)",
+    "detail": "Ve"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/person-wise-target-planning",
+    "kind": "js-error-on-load",
+    "control": "(page load)",
+    "detail": "Ve"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/ch/program-wise-target-planning",
+    "control": "button \"Person Planning\"",
+    "detail": "404 centre_head.api.target.program_target.program_highlight, 417 centre_head.api.target.target_planing.person_vise_month_list, 417 centre_head.api.target.target_planing.person_vise_month_list",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "ch",
+    "route": "/ch/my-profile",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "(account)",
+    "control": "(login)",
+    "kind": "account-provisioning",
+    "detail": "role_profile=Outreach Coordinator permitted_centres=[]"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/authentication/login",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/authentication/forget-password",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/set-password",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/",
+    "control": "div[button] \"Navigate to Batches\"",
+    "detail": "403 batch_management.api.pathway_batch.helper.get_location_dropdown, 403 batch_management.api.pathway_batch.widgets.pathway_batch_counts, 403 batch_management.api.pathway_batch.list.get_batches_list",
+    "kind": "403-account-not-provisioned"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/repository",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/enrollment/pre-enquiry",
+    "control": "input \"Search By Name\"",
+    "detail": "403 outreach.apis.pre_enquiry.list.get_pre_enquiries, 403 outreach.apis.pre_enquiry.list.get_pre_enquiries",
+    "kind": "403-account-not-provisioned"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/enrollment/pre-enrollment-counselling",
+    "control": "button[switch] \"on\"",
+    "detail": "403 outreach.apis.pec.list.get_scheduled_visits",
+    "kind": "403-account-not-provisioned"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/enrollment/registration",
+    "control": "button[switch] \"on\"",
+    "detail": "403 outreach.apis.registration.list.get_pathway_batches",
+    "kind": "403-account-not-provisioned"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/my-profile",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/test-zustand",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/batch-management/mark-attendance",
+    "control": "input \"Search By Name\"",
+    "detail": "400 batch_management.api.fc.attendance.pre_fc_data, 400 batch_management.api.fc.attendance.pre_fc_data",
+    "kind": "failed-load-on-interaction"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/batch-management/edit-batch",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/batch-management/merge-batch",
+    "kind": "js-error-on-load",
+    "control": "(page load)",
+    "detail": "vt"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/batch-management/view-batch",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/batch-management/view-completed-batch",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/batch-management/view-attendance",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/outreach-planning-dashboard",
+    "kind": "js-error-on-load",
+    "control": "(page load)",
+    "detail": "vt"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/outreach-planning-dashboard",
+    "kind": "js-error-on-load",
+    "control": "(page load)",
+    "detail": "vt"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/outreach-planning-dashboard",
+    "kind": "js-error-on-interaction",
+    "control": "button \"Recommendations\"",
+    "detail": "vt"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/outreach-planning-dashboard",
+    "kind": "js-error-on-interaction",
+    "control": "button \"Recommendations\"",
+    "detail": "vt"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/outreach-planning-dashboard",
+    "control": "button \"Recommendations\"",
+    "detail": "403 outreach.apis.outreach_planning.dashboard.data.least_coverage_areas, 403 outreach.apis.outreach_planning.dashboard.data.get_recommended_communities",
+    "kind": "403-account-not-provisioned"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/plan-outreach",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/coming-soon",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/visit-details",
+    "control": "input \"Search By Name\"",
+    "detail": "403 outreach.apis.outreach_planning.dashboard.data.get_datewise_visits, 403 outreach.apis.outreach_planning.dashboard.data.get_datewise_visits",
+    "kind": "403-account-not-provisioned"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/outreach-community-dashboard",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/outreach-plan-status",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/post-visit-documentation",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/visit-post-documentation",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  },
+  {
+    "persona": "oc",
+    "route": "/oc/view-map",
+    "control": "(page load)",
+    "kind": "blank-possibly-no-data",
+    "detail": "no content rendered"
+  }
+]

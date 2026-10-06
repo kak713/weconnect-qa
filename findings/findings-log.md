@@ -3575,3 +3575,34 @@ defects. These are verified-negative results.**
 **What this is not.** A clean source scan is not a guarantee of no issue — it means the specific
 classes above were searched and nothing was found. The defects we did find are recorded separately
 (WC-128, WC-130, WC-133, WC-134).
+
+## WC-136 · S3 — Seven further routes throw an uncaught error and blank the screen for an account with no assigned centres [VERIFIED — runtime interaction sweep, live UAT, 2026-10-06]
+
+**Found by the front-end interaction sweep driving the live UAT as the client-issued OC, CH and FC
+accounts. The load-only route sweep did not surface these; they appear when the screens are actually
+exercised by an account whose `permitted_centres` is empty.**
+
+- **Routes affected (all newly identified, not in the WC-016 list):**
+  - `fc/view-feedBack` — crashes with a **readable** cause: *"Cannot destructure property 'youthId'
+    of null"* — the same null-state family as WC-043.
+  - `ch/budget-profile`, `ch/program-targets`, `ch/person-wise-target`,
+    `ch/person-wise-target-planning` — uncaught error on load / on interaction.
+  - `oc/outreach-planning-dashboard`, `oc/batch-management/merge-batch` — uncaught error on load.
+- **The trigger is an empty-data state, which is a real user state.** The three test accounts have
+  no centres assigned (`permitted_centres=[]`). A newly-onboarded staff member, or one between
+  assignments, is in exactly this state. These screens assume data is present and throw when it is
+  not, rather than showing an empty state.
+- **Why it blanks rather than degrades.** The uncaught error is not caught by any error boundary
+  (WC-133), so the whole screen goes blank instead of showing "no data" or a fallback. This is the
+  same chain as WC-016/WC-043: a localised null-handling fault becomes a whole-page failure.
+- **A production diagnosis problem, noted alongside.** In the deployed (minified) bundle most of
+  these errors surface only as single-letter names (`Ve`, `vt`) with no readable message and no
+  boundary to report them — so when a real user hits one, neither they nor support can tell what
+  failed. Shipping source maps to the error reporter, or an error boundary that captures the stack,
+  would fix the diagnosability.
+- **Honest limit.** Because our accounts have no assigned centres, we cannot cleanly separate
+  "crashes for everyone" from "crashes only on the empty-data path." Either way it is a real
+  robustness defect; a re-check with a fully provisioned account would classify each route precisely.
+- **Suggested fix.** Guard the data access on these screens (optional chaining / null checks and an
+  explicit empty state), and add the app-level error boundary from WC-133 so any residual crash is
+  contained. `fc/view-feedBack` is the clearest single fix: guard the `youthId` destructure.
