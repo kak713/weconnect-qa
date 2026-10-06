@@ -3310,3 +3310,56 @@ the system, not a judgement about correct behaviour.
   enumerated, and `Pathway Batch` had no record in the fixture set. Given that not one of 174
   transitions was refused, the client should treat the absence as general and verify rather than
   assume the remainder are controlled.
+
+## WC-127 · S3 — Frontend dependencies carry known high-severity advisories, including the HTTP client used by every application [VERIFIED — npm audit against the committed lockfiles, 2026-10-06]
+
+**Found by adding dependency scanning, a category this engagement had never covered. No dependency
+finding existed in the register before this entry.**
+
+- **Method.** `npm audit` run against the committed `package-lock.json` of all nine JavaScript
+  projects — the eight persona frontends and `persona-common-components`. The lockfiles are the
+  authority for what is actually installed, so this reflects the deployed tree rather than a
+  loose version range.
+
+- **Raw totals: 14 critical, 181 high, 74 moderate, 9 low.** Those numbers are misleading on their
+  own and should not be quoted without the split below.
+
+- **The split that matters.** A vulnerability in a build or test tool never reaches a user, because
+  it is not part of the shipped bundle. Separating runtime dependencies from build and test ones:
+
+  | | Distinct critical/high packages |
+  |---|---|
+  | **Reaches users (runtime dependency)** | **8** |
+  | Build or test only, never shipped | 26 |
+
+  **Every one of the four critical advisories is in the second group** — `vitest`, `tinypool`,
+  `@vitest/coverage-v8` and a `form-data` path reached only through them. No critical advisory
+  reaches your users.
+
+- **The eight that do reach users**, with the number of applications affected:
+
+  | Package | Projects | Why it matters here |
+  |---|---|---|
+  | `axios` | 8 of 9 | The HTTP client every application uses to call the backend. The most consequential of the set. |
+  | `react-router`, `react-router-dom`, `@remix-run/router` | 5 each | Routing. Related to the navigation-state defects already recorded at WC-043. |
+  | `vite-plugin-html` | 8 | Injects into the served HTML. |
+  | `tailwindcss`, `tailwind-scrollbar` | 4 and 3 | Styling; low practical exposure. |
+  | `fast-glob` | 8 | Reached as a runtime dependency in these trees. |
+
+- **Why this is S3 and not higher.** None of these is a confirmed exploit path against your
+  deployment, and the criticals do not ship. It is recorded because the advisories are public, the
+  fixes are published, and `axios` sits on the path of every API call the platform makes.
+
+- **Suggested fix.** Run `npm audit fix` in each of the nine projects and commit the updated
+  lockfile. Where a fix needs a major version — most likely the `react-router` family — treat that
+  as a separate task, because a major router upgrade will interact with the navigation-state defects
+  at WC-043. Start with `axios`, which is the single highest-value update and the least likely to
+  break anything.
+
+- **Worth adding to CI.** `npm audit --audit-level=high` as a build step would stop this accumulating
+  again. There is currently no dependency check anywhere in the pipeline.
+
+- **What we did not do.** The nine Python backends declare dependencies in `pyproject.toml` with no
+  lockfile, so there is no equivalent authority for what is installed on the server. A Python
+  dependency audit needs either a lockfile or a `pip freeze` from the running instance, and is not
+  covered by this entry.
