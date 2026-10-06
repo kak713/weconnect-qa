@@ -26,6 +26,7 @@
  * Every request goes through the Phase 2 write guard (isolated host only).
  */
 import "dotenv/config";
+import { reporter } from "./_finding-reporter.mjs";
 import fs from "node:fs";
 import { createRequire } from "node:module";
 
@@ -95,4 +96,34 @@ for (const label of ["EXECUTED", "NO GATE", "GATE", "GUARD-REFUSED"]) {
 }
 const gate = (by.GATE || []).length, nogate = (by["NO GATE"] || []).length, exec = (by.EXECUTED || []).length;
 console.log(`  ${gate} gated, ${nogate} NO gate, ${exec} executed`);
+
+// Structured output: one fix-ready row per endpoint with no authorization gate (the WC-079 class).
+const rep = reporter("gate-probe");
+for (const r of (by["NO GATE"] || [])) {
+  const ep = r.method || r.path || r.endpoint || "(endpoint)";
+  rep.add({
+    id: "WC-079", severity: "S2", area: "Authorisation",
+    title: `Mutating endpoint has no authorization gate: ${ep}`,
+    persona: "any authenticated account (tested as Skilling Partner, non-admin)",
+    steps: [
+      "Sign in as any authenticated non-admin account and take the API credential.",
+      `Call ${ep} with empty or nonexistent identifiers.`,
+      "Observe that the call passes authorization and fails later on data (validation / not-found / 500), rather than being refused with 403.",
+    ],
+    expected: "The call is refused with 403 (or an explicit insufficient-permission message) before it acts.",
+    actual: `HTTP ${r.status}: ${r.snippet || "passed authorization, failed downstream on data"}`,
+  });
+}
+for (const r of (by.EXECUTED || [])) {
+  const ep = r.method || r.path || r.endpoint || "(endpoint)";
+  rep.add({
+    id: "WC-079", severity: "S1", area: "Authorisation",
+    title: `Mutating endpoint executed with no gate and no valid input: ${ep}`,
+    persona: "any authenticated account (tested as Skilling Partner, non-admin)",
+    steps: ["Sign in as any authenticated non-admin account.", `Call ${ep} with empty identifiers.`, "Observe HTTP 200 success."],
+    expected: "The call is refused before it acts.",
+    actual: `HTTP ${r.status}: executed to completion on empty input`,
+  });
+}
+rep.finish();
 fs.writeFileSync(new URL("../../evidence/gate-probe-results.json", import.meta.url), JSON.stringify(results, null, 1));
