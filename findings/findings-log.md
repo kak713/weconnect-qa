@@ -3363,3 +3363,152 @@ finding existed in the register before this entry.**
   lockfile, so there is no equivalent authority for what is installed on the server. A Python
   dependency audit needs either a lockfile or a `pip freeze` from the running instance, and is not
   covered by this entry.
+
+## WC-128 · S2 — The password-reset request, including the new plaintext password and the OTP, is written to the browser console in five applications [VERIFIED — source, all five occurrences]
+
+**Found by adding a credential-logging sweep, a check this engagement had not run.**
+
+- **Where:** `src/api/forget-password/forget-password-api.js`, in the `resetPassword` function, in
+  **five** frontend repositories: `weconnect-frontend-auth`, `weconnect-frontend`,
+  `weconnect-frontend-ch`, `weconnect-frontend-pm`, `weconnect-frontend-sm`.
+
+- **The code.**
+
+      export const resetPassword = async (email, otp, passwd, cnf_passwd) => {
+        const payload = { email, otp, passwd, cnf_passwd };
+        console.log(payload, "payload for reset password");
+
+  The application's own JSDoc describes `passwd` as "The new plaintext password chosen by the
+  user". That object, containing the email, the verified OTP and the password in clear text, is
+  printed to the browser console on every password reset.
+
+- **Why this matters more than a stray debug line.** A password typed during reset is the one
+  credential a user believes was never transmitted in the clear. The console is not a private
+  channel: it is captured by browser extensions, retained in screen recordings and support
+  sessions, visible to anyone shoulder-surfing a shared centre machine, and collected wholesale by
+  some error-reporting tools. One of these applications also configures a Sentry DSN, so console
+  breadcrumbs may be leaving the browser entirely.
+
+- **Scope.** Every persona that can reset a password, across five of the nine applications. The OTP
+  is logged alongside, so the reset flow's second factor is exposed in the same line.
+
+- **Suggested fix.** Delete the line in all five files. It is a single-line removal per repository
+  with no behavioural effect. Then add a lint rule — `no-console` for production builds, or a
+  Vite `esbuild.drop: ["console"]` setting — so this cannot be reintroduced. There are **837**
+  `console` calls across the frontends; a blanket production strip is the only durable answer.
+
+## WC-129 · S3 — Two live Google API keys are committed to the repositories, one hardcoded in a source file [VERIFIED — source; exploitability tested]
+
+**Found by adding secret scanning across all eighteen repositories.**
+
+- **Where.** Two distinct keys with the `AIzaSy` prefix:
+  - `weconnect-frontend/.env`, `.env.uat` and `.env.prod` as `VITE_MAP_API_KEY`
+  - `weconnect-frontend-fc/src/components/google-map/google-map.jsx` — **hardcoded directly in
+    source**, not in configuration
+
+- **Both are in git history.** Deleting the lines does not remove them. Anyone with the repository
+  can recover them from any earlier commit, so these keys must be **rotated**, not edited out.
+
+- **Exploitability, tested rather than assumed.** We issued one Geocoding request with each key and
+  no referrer:
+  - the first returns `REQUEST_DENIED` — *"You must enable Billing on the Google Cloud Project"*.
+    Billing is not enabled, so this key cannot incur charges on any API.
+  - the second returns `REQUEST_DENIED` — *"This API is not activated on your API project"*.
+  **Neither key is currently usable, and neither can run up a bill.** That is why this is S3 and not
+  higher, and it should not be reported as a live financial exposure.
+
+- **Why it is still worth fixing.** The protection is incidental. Enabling billing on that project,
+  for any unrelated reason, makes a publicly known key immediately chargeable. Keys with this prefix
+  are specifically what automated scanners look for in public repositories. We only tested the
+  Geocoding API; the second key may still function for the Maps JavaScript API that
+  `google-map.jsx` actually uses.
+
+- **Suggested fix.** Rotate both keys in the Google Cloud console. Move the replacement into the
+  build environment rather than a committed file, and restrict it by HTTP referrer to the
+  foundation's own hosts — a `VITE_` variable is embedded in the shipped bundle and is therefore
+  always visible to users, so referrer restriction is the only real control. Remove the hardcoded
+  key from `google-map.jsx` so configuration lives in one place.
+
+## WC-130 · S3 — Backend-supplied content is rendered as raw HTML, giving a stored cross-site scripting path [VERIFIED — source; backend editability not confirmed]
+
+**Found in the same sweep, checking for unsafe rendering in the React applications.**
+
+- **Where:** `weconnect-frontend/src/pages/outreach-planning/outreach-community/target-card.jsx:147`
+
+      <p dangerouslySetInnerHTML={{ __html: strategy }} />
+
+- **It is deliberate, not accidental.** The component's own JSDoc documents the parameter as
+  "HTML string for the recommended strategy blurb", so raw HTML is the intended contract. The value
+  arrives from the outreach strategy data rendered by the sibling `strategies.jsx`.
+
+- **Why it is a concern.** React escapes interpolated values by default, which is why this is the
+  only such site in the entire frontend estate — one occurrence across eight applications. That
+  default is what `dangerouslySetInnerHTML` switches off. If the strategy text can be set by any
+  user, a `<script>` or an event-handler attribute stored in that field executes in the browser of
+  every user who opens the community dashboard.
+
+- **What we did not confirm, stated plainly.** We have not verified whether the strategy field is
+  editable through the platform or fixed reference data maintained by administrators. If it is
+  fixed and only administrators can write it, the practical risk is small and this is hygiene. If
+  any persona can write it, it is a stored XSS affecting every viewer of that screen, and it should
+  be re-rated upward. **One question answers it: who can edit the recommended strategy text?**
+
+- **Suggested fix.** If the field only ever needs bold or line breaks, render it as text and handle
+  formatting in the component. If HTML genuinely must be supported, sanitise on the way in with an
+  allowlist — DOMPurify is the usual choice — rather than trusting the stored value.
+
+## WC-131 · S2 — The password-reset OTP is a four-digit number with a short expiry, drawn with a non-cryptographic generator [VERIFIED — source]
+
+**Found during a review of the authentication code paths.**
+
+- **Where:** `authentication/api/password.py`, `generate_otp()`:
+
+      def generate_otp():
+          otp = random.randint(1111, 9999)
+          return otp
+
+- **Three weaknesses in one function, each independently worth fixing.**
+  1. **Four digits, and not even the full four.** The lower bound is 1111, so the value space is
+     smaller than 0000–9999. A four-digit reset code is below the strength expected of a
+     password-reset second factor.
+  2. **`random.randint` is not cryptographic.** Python's `random` module is a Mersenne Twister,
+     which is not designed for security-sensitive values. Use `secrets` for anything that gates
+     access to an account.
+  3. **No attempt limit on verification.** `verify_otp` (same file) compares the submitted value and
+     returns an error on mismatch, with no counter on the record and no lockout. The login path has
+     per-IP and per-account throttling (recorded at WC-117); this path has none.
+
+- **The expiry is three minutes.** `password_reset_otp.py` sets
+  `expiry_timestamp = now_datetime() + timedelta(minutes=3)`, and a scheduled job expires stale
+  codes. The short window reduces exposure, which is why this is S2 and not S1, but a short window
+  is mitigation, not a control — the correct fix is the attempt limit plus a larger value space.
+
+- **This compounds WC-128.** That finding logs the OTP to the browser console; this one makes the
+  OTP weak. They should be read together and fixed together.
+
+- **Candidate for S1, held at S2 pending the client's call.** `reset_password` is unauthenticated, the OTP that gates it is weak, and verification is unthrottled — the three conditions that together describe an account-takeover path by email address alone. Because every staff account holds `System Manager` (WC-073), compromising any account is equivalent to full administrative access. We have rated it S2 rather than S1 for one reason only: the three confirmed S1s were each reproduced end-to-end against the database, and we deliberately did **not** run a live takeover against the authentication flow. The weakness is established from source; the exploitation was not performed. We recommend the client treat the remediation with S1 urgency regardless of the label.
+
+- **Suggested fix.** Generate the code with `secrets` (for example a six-digit
+  `secrets.randbelow(900000) + 100000`), store an attempt counter on the Password Reset OTP record,
+  and invalidate the code after a small number of failed verifications — the same discipline the
+  login path already applies. Keep the three-minute expiry.
+
+## WC-132 · Info — Unauthenticated endpoint inventory, enumerated across all backends [VERIFIED — source]
+
+**Recorded so the full guest-reachable surface is documented in one place, rather than discovered
+piecemeal.**
+
+- **Method.** Every `@frappe.whitelist(allow_guest=True)` across the eight backend applications was
+  listed from source.
+- **Result: 17 guest-reachable endpoints.** Most are legitimate — the login, the password-reset
+  trio, and read-only reference lists (salary ranges, industries) that a public enquiry form needs.
+- **The ones already raised separately:** the OpenAPI specification endpoints (WC-068), the account
+  provisioning endpoint (WC-077), and the password-reset functions (WC-128, WC-131).
+- **Worth the client confirming:** the four placement reference endpoints
+  (`youth_placement/api/utils.py` — `salary_range`, `industry`, `employer_by_job_role`,
+  `job_by_employer`) return reference data to any unauthenticated caller. That is probably
+  intended for a public-facing form, but it should be a deliberate decision rather than a default,
+  and the data they expose should be confirmed as non-sensitive.
+- **No fix implied for the legitimate set.** This entry is an inventory, so that the client has the
+  complete list of what the platform exposes without a login and can confirm each is meant to be
+  there.
