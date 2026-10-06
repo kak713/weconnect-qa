@@ -3394,8 +3394,10 @@ finding existed in the register before this entry.**
 
 - **Suggested fix.** Delete the line in all five files. It is a single-line removal per repository
   with no behavioural effect. Then add a lint rule — `no-console` for production builds, or a
-  Vite `esbuild.drop: ["console"]` setting — so this cannot be reintroduced. There are **837**
+  Vite `esbuild.drop: ["console"]` setting — so this cannot be reintroduced. There are **2,641**
   `console` calls across the frontends; a blanket production strip is the only durable answer.
+
+- **Verified this ships to production, not just dev builds (2026-10-06).** All five apps that log the reset payload — `-auth`, `weconnect-frontend` (OC), `-ch`, `-pm`, `-sm` — build with **no console strip**: their `vite.config` has no `esbuild.drop`/`terser` rule, so `console.*` survives into the deployed bundle. Two sibling apps, `-sp` and `-syc`, **do** strip console in production (`esbuild: { drop: ["console","debugger"] }`) — so the fix pattern already exists in your own codebase; it simply was not applied to the apps that handle the password.
 
 ## WC-129 · S3 — Two live Google API keys are committed to the repositories, one hardcoded in a source file [VERIFIED — source; exploitability tested]
 
@@ -3512,3 +3514,64 @@ piecemeal.**
 - **No fix implied for the legitimate set.** This entry is an inventory, so that the client has the
   complete list of what the platform exposes without a login and can confirm each is meant to be
   there.
+
+## WC-133 · S2 — Six of the seven frontend applications have no React error boundary, so any component crash blanks the whole screen [VERIFIED — source, all eight repos]
+
+**Found by extending front-end testing to application-level resilience, which the route sweep did
+not cover. This is the architectural cause beneath the blank-route defects (WC-016, WC-043).**
+
+- **Where:** no `ErrorBoundary`, `componentDidCatch`, `getDerivedStateFromError`, `useRouteError`
+  or router `errorElement` exists in `weconnect-frontend` (OC), `-auth`, `-ch`, `-fc`, `-sm`,
+  `-syc`. The one exception is **`weconnect-frontend-sp`**, which ships a real
+  `src/components/layout/error-boundary.jsx` wired into its `app-layout.jsx`.
+- **Why it matters.** In React, an uncaught error in any component unmounts the entire tree below
+  the nearest error boundary. With no boundary, a single failing component takes the whole page to
+  blank — which is exactly the symptom recorded at WC-016 (14 routes blank on direct load) and
+  root-caused at WC-043 (a null dereference). The missing boundary is why a localised fault becomes
+  a whole-screen failure rather than a contained one.
+- **The fix already exists in your own codebase.** `weconnect-frontend-sp`'s `error-boundary.jsx`
+  is the pattern to copy: wrap each app's router (or layout) in an error boundary that renders a
+  fallback message and a way back, instead of an empty page. This does not fix the underlying
+  crashes (WC-043 still needs its null-guard), but it stops every future component fault from
+  blanking the application, and it turns a blank screen into a diagnosable error for the user.
+- **Scope.** Six deployed applications. The fix is one component per app, modelled on the seventh.
+
+## WC-134 · S3 — 264 image elements across the frontend have no alt attribute, concentrated in shared components [VERIFIED — source, all eight repos]
+
+**Found by a source-level accessibility sweep, extending the axe-core route scan (WC-027, WC-028)
+with a full count of missing text alternatives.**
+
+- **Count, by application:** SM 72, SP 59, SYC 49, FC 27, persona-common-components 27, CH 17,
+  OC 13 — **264 total**, of which **157 sit in shared or common components**, so fixing those once
+  helps every screen that uses them.
+- **What it means.** An `<img>` with no `alt` is invisible to a screen reader, or is announced by
+  its filename. Some of these are decorative (a chevron, a spacer) where the correct fix is an
+  explicit empty `alt=""`; others are meaningful (status icons, a user avatar) where a description
+  is needed. Either way the attribute is currently absent, so the decision has not been made for any
+  of the 264.
+- **Why S3 rather than S2.** It is a consistent, countable WCAG 2.1 AA gap (1.1.1 Non-text Content)
+  but not a blocker; it compounds the navigation-markup issue already recorded at WC-027.
+- **Suggested fix.** Work through the 157 shared-component images first, adding `alt=""` to
+  decorative images and a short description to meaningful ones. A lint rule (`jsx-a11y/alt-text`)
+  added to the build would prevent new ones and flag the remaining 107 per-page images as they are
+  touched.
+
+## WC-135 · Info — Front-end security sweep: clean results worth recording [VERIFIED — source, all eight frontend repos]
+
+**Recorded so the front-end attack surface we examined and found clean is documented, not just the
+defects. These are verified-negative results.**
+
+- **No mixed content.** No `http://` resource URLs in any frontend source — nothing would load
+  insecurely on the HTTPS site.
+- **No `window.message` listeners.** No `addEventListener("message", …)` anywhere, so there is no
+  unvalidated cross-window message handler to exploit.
+- **No secrets in URLs.** No token, password, OTP, secret or API key placed in a URL query string
+  in any frontend source.
+- **No `eval` / `new Function`** on user-reachable paths in the scanned components.
+- **Production console strip exists as a pattern.** Two apps (`-sp`, `-syc`) already strip
+  `console.*` in production; the recommendation at WC-128 is to apply that same config to the other
+  seven, not to invent anything.
+
+**What this is not.** A clean source scan is not a guarantee of no issue — it means the specific
+classes above were searched and nothing was found. The defects we did find are recorded separately
+(WC-128, WC-130, WC-133, WC-134).
