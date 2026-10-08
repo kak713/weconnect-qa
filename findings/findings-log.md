@@ -3606,3 +3606,52 @@ exercised by an account whose `permitted_centres` is empty.**
 - **Suggested fix.** Guard the data access on these screens (optional chaining / null checks and an
   explicit empty state), and add the app-level error boundary from WC-133 so any residual crash is
   contained. `fc/view-feedBack` is the clearest single fix: guard the `youthId` destructure.
+
+## WC-137 · Info — Re-test against the client's fixes (2026-10-08): what is verified fixed, partial, still present, and newly uncertain
+
+**The client reported fixing bugs. We pulled the current source of all 18 repositories and re-ran
+the checks. Commit messages confirm they are working from our audit — a PR branch named
+`fix/audit-findings-fc`, and commits "Role access fix", "invoice permission added",
+"automation audit fix". This is the objective result, finding by finding.**
+
+**Verified FIXED (source + live):**
+- **WC-128** — the password-reset `console.log` of the plaintext password/OTP is **gone from all
+  five apps**. Confirmed by source.
+- **WC-129** — the **hardcoded Google API key is removed** from `google-map.jsx`. (The committed
+  `.env` keys should still be rotated, as they remain in git history — see the original entry.)
+- **WC-068** — **partially fixed.** The two `youth_skilling` OpenAPI endpoints no longer answer
+  unauthenticated; `batch_management.api.docs.swagger_spec` still does. One of three remains.
+
+**Materially changed, promising, needs a provisioned account to confirm:**
+- **WC-073 / WC-105 (the System Manager problem)** — **the live accounts no longer hold
+  `System Manager`.** The OC account now receives HTTP 403 reading System Settings, where on the
+  isolated stack every persona held the role. This is the single most important shift: the platform
+  appears to be moving to real per-persona roles.
+- **WC-095 (cross-centre invoice)** — `invoice.py` gained a real centre-scope permission layer
+  (`_invoice_scope`, `get_user_permitted_centres`) with a new guard test file. **Because the
+  accounts are no longer System Manager, that check would now apply to them** — so this S1 may be
+  genuinely fixed. We did **not** confirm at runtime: `raise_invoice` is a write, and the SP account
+  issued to us is not yet linked to a Skilling Partner (login returns "This e-mail is not linked to
+  any Skilling Partner"). Re-check needs a provisioned SP account and a safe read-scope probe.
+
+**Still PRESENT (verified in current source):**
+- **WC-088** — the `id = json.loads(id)` typo is **still at both sites**
+  (`outreach/apis/enquiry.py`, `outreach/apis/enquiry_form/form.py`), despite the "automation bug
+  fix" commits. Not fixed.
+- **WC-084** — `close_batch` **still has no `permitted_centres`/`has_permission` check**. The
+  "Role access fix" commit changed a different file (`pathway_batch/helper.py`). Not fixed.
+- **WC-079 / systemic `ignore_permissions`** — **not reduced**: 264 sites across the seven in-scope
+  backends (plus 49 in placement), up from the earlier count. The new invoice code added guarded
+  logic but the raw bypass count did not fall. The systemic pattern persists.
+- **WC-121, WC-112, WC-023, WC-116** — CORS wildcard, missing security headers, tracebacks in error
+  bodies, and seven-day sessions are **all still live on `api-dev`**. If these are fixed in source,
+  the fix is not yet deployed to the environment we can see — worth asking the client which.
+
+**Provisioning gaps in the accounts issued to us (block further runtime re-test):**
+- The **SP account is not linked to a Skilling Partner**, so SP-scoped testing cannot run.
+- OC, CH, FC, SM, SYC log in; all show empty `permitted_centres`, so data-bearing screens show
+  empty or error states (this is the condition behind WC-136).
+
+**Net:** three findings verified fixed (two outright, one partial), a genuine and important move on
+the authorisation model that we could not fully confirm, and several — including an S1 (WC-084) and
+the systemic bypass — still present. We would not yet report the authorisation problem as closed.
