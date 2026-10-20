@@ -48,12 +48,16 @@ from the register and tracker already with you.
 \toprule
 \textbf{Outcome} & \textbf{Count} & \textbf{Findings} \\
 \midrule
-Verified fixed & 3 & \wc{011}, \wc{130}, \wc{095} \\
-Partially fixed & 6 & \wc{131}, \wc{129}, \wc{068}, \wc{073}, \wc{133}, \wc{134} \\
-Still present & 11 & \wc{084}, \wc{088}, \wc{079}, \wc{105}, \wc{128}, \wc{013}, \wc{004}, \wc{121}, \wc{112}, \wc{023}, \wc{116} \\
-Runtime re-confirm & 9 & \wc{048}, \wc{084}, \wc{095}, \wc{035}, \wc{122}, \wc{125}, \wc{126}, \wc{078}, \wc{115} \\
+Verified fixed & 3 & \wc{011}, \wc{130}, \wc{095} (for ordinary accounts) \\
+Partially fixed / improved & 7 & \wc{131}, \wc{129}, \wc{068}, \wc{073}, \wc{133}, \wc{134}, \wc{122} \\
+Still present & 16 & \wc{084}, \wc{088}, \wc{079}, \wc{105}, \wc{128}, \wc{013}, \wc{004}, \wc{121}, \wc{112}, \wc{023}, \wc{116}, \wc{126}, \wc{125}, \wc{123}, \wc{089}, \wc{074} \\
 \bottomrule
 \end{tabularx}
+
+\vspace{2pt}
+The two S1 breaches and nine further write-side items were re-tested at runtime on a rebuilt
+isolated stack (section 5); \wc{084} is confirmed present and \wc{095} confirmed fixed for ordinary
+accounts.
 
 \section{Verified fixed}
 \begin{itemize}
@@ -63,8 +67,8 @@ Runtime re-confirm & 9 & \wc{048}, \wc{084}, \wc{095}, \wc{035}, \wc{122}, \wc{1
         \texttt{innerHTML} assignment remains anywhere in the frontend.
   \item \textbf{\wc{095}} (S1, cross-centre invoice) --- the invoice API now has a centre-scope
         check. It exempts \texttt{System~Manager}, but the live accounts no longer hold that role, so
-        the check now applies to them. Source-verified; the runtime write is being re-confirmed on the
-        isolated stack (section 5).
+        the check now applies to them. Confirmed at runtime on the isolated stack: a
+        non-\texttt{System~Manager} account is refused with HTTP 403 (section 5).
 \end{itemize}
 
 \section{Partially fixed}
@@ -82,6 +86,9 @@ Runtime re-confirm & 9 & \wc{048}, \wc{084}, \wc{095}, \wc{035}, \wc{122}, \wc{1
   \item \textbf{\wc{133}} --- a React error boundary now exists in two of nine apps; the other seven
         still blank out on any component fault.
   \item \textbf{\wc{134}} --- 204 images without \texttt{alt}, down from 264.
+  \item \textbf{\wc{122}} --- mass assignment is materially reduced: 23 of 28 sites now carry an
+        allowlist guard (was about ten), and \texttt{add\_interest} rejects undeclared fields at
+        runtime. Five sites remain unguarded (section 5).
 \end{itemize}
 
 \section{Still present}
@@ -118,9 +125,27 @@ write breaches were tested end to end.
         account-role configuration rather than enforced for every caller --- if any privileged
         account keeps \texttt{System~Manager}, the breach returns for it.
 \end{itemize}
-The remaining write-side items (\wc{048}, \wc{035}, \wc{122}, \wc{125}, \wc{126}, \wc{078},
-\wc{115}) share the same authorisation root cause; their status stands on the source and earlier
-runtime evidence and was not re-executed in this session.
+We also re-ran the full write-side probe battery. The synthetic accounts hold \texttt{System~Manager}
+by necessity, so role-gating counts are an upper bound; the data, validation and state results are
+faithful.
+\begin{itemize}
+  \item \textbf{\wc{126}} --- \textbf{still present.} Every status transition is accepted: Skilling
+        Invoice 30/30, Skilling Batch 72/72. No state machine.
+  \item \textbf{\wc{125}} --- \textbf{still present.} Five of twelve contradictory values stored
+        without complaint (negative and inverted batch capacity, a 150\% and a negative instalment
+        percentage, a negative course cost). A future date of birth is now rejected --- one axis
+        improved.
+  \item \textbf{\wc{122}} --- \textbf{materially improved.} \texttt{add\_interest} now rejects an
+        undeclared field; 23 of 28 mass-assignment sites now carry an allowlist guard, up from about
+        ten. Five remain unguarded.
+  \item \textbf{\wc{123}} --- \textbf{still present.} An account wrote a field on another user's
+        record (one of the five unguarded sites).
+  \item \textbf{\wc{089}}, \textbf{\wc{074}} --- \textbf{still present.} Four endpoints answer a bad
+        request with a 500 instead of a 400; \texttt{close\_batch} returns 200 on failure.
+\end{itemize}
+Not cleanly re-run (the probe harness expects fields the current, stricter code now requires):
+\wc{048}, \wc{035}, \wc{078}, \wc{115}, \wc{085}. Status stands on source and earlier runtime
+evidence.
 
 \section{What we need from you}
 \begin{itemize}

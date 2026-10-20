@@ -3709,9 +3709,38 @@ records the verified status; the write-side items are being re-confirmed on the 
   can still breach. The SM exemption sits in the `get_user_permitted_centres` helper the invoice
   guard calls.
 
-**Still requires the isolated stack or a provisioned SP account to retest at runtime (not re-run
-this session; harness configuration):** WC-048, WC-035, WC-122, WC-125, WC-126, WC-078, WC-115,
-WC-085. Status stands on source and earlier runtime evidence.
+**Full write-side probe battery re-run on the isolated stack (current `dev`, synthetic data,
+every write rolled back). The synthetic accounts hold `System Manager` by necessity (WC-073), so
+role-gating results are read with that caveat; data-scoping, validation and state-transition
+results are faithful.**
+
+- **WC-126** (state transitions) — **still present, confirmed.** Every status transition is
+  accepted: Skilling Invoice 30/30, Skilling Batch 72/72. No state machine. `state-boundary-sweep`
+  also drove `withdraw_batch`, `raise_batch_fill_request` and `discontinue_course` to success.
+- **WC-125** (contradictory values) — **still present, confirmed.** 5 of 12 self-contradictory
+  values stored without complaint: Skilling Batch negative and inverted capacity; Skilling Invoice
+  `installment_percent` 150 and -20; negative `course_cost_per_student`. Improved on one axis — a
+  future date of birth on the Enquiry Form is now rejected.
+- **WC-123** (update_profile cross-user) — **still present, confirmed.** An account wrote a field
+  on *another* user's `User` record (HTTP 200). `update_profile` is one of the five still-unguarded
+  mass-assignment sites.
+- **WC-122** (add_interest mass assignment) — **materially improved.** `add_interest` now rejects an
+  undeclared `first_name` (HTTP 400). The static scan shows 23 of 28 mass-assignment sites now carry
+  an allowlist guard (was roughly 10 of 27); five remain unguarded: `outreach/api.py:343` and
+  `enquiry_form/form.py:402` (`update_enquiry_form`), `community_visit/form.py:9`,
+  `profile/form.py:131` (`update_profile`), and `skilling_issue.py:573`.
+- **WC-089** (500 on bad input) — **still present.** Four endpoints crash with 500 on malformed
+  input instead of returning 400: `create_pre_enquiry`, `create_enquiry`, `raise_invoice`, `create`.
+- **WC-074** (200 on failure) — **still present.** `close_batch` returns HTTP 200 on a failed call.
+- **WC-079** (no authorization gate) — 36/36 mutating endpoints did not refuse the probe, but the
+  probe account holds `System Manager`; after the WC-095 fix some endpoints *do* gate non-SM callers
+  (confirmed for the invoice), so this count is an upper bound, not a clean measure. The source
+  bypass count (322 `ignore_permissions`) is the firmer figure.
+
+**Lifecycle probes** (functional CRUD across personas) ran mostly green; delete endpoints correctly
+return 403. **Not cleanly re-run** (probe harness expects fields the current stricter code now
+requires): WC-035 and WC-048 read-scope, WC-115, WC-078, WC-085 — status stands on source and
+earlier runtime evidence.
 
 **Net:** a handful of genuine fixes (WC-011, WC-130, and the WC-095 invoice breach by way of the
 account-role change), several partials, and the systemic items — the authorisation bypass, committed
