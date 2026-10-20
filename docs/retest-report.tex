@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage[a4paper,top=2.3cm,bottom=2.2cm,left=2.3cm,right=2.3cm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage[hidelinks]{hyperref}
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection.}{0.5em}{}
+\titlespacing{\section}{0pt}{12pt}{4pt}
+\setlist[itemize]{leftmargin=1.3em,topsep=2pt,itemsep=2pt,parsep=0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\linespread{1.04}
+\frenchspacing
+\newcommand{\wc}[1]{\mbox{WC-#1}}
+\newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
+
+\begin{document}
+\justifying
+
+\begin{center}
+{\LARGE\bfseries WeConnect 2.0 --- Retest Report}\\[4pt]
+{\large Independent verification of the reported fixes}\\[10pt]
+\end{center}
+
+\begin{tabular}{@{}ll@{}}
+\textbf{Prepared for} & Lighthouse Communities Foundation \\
+\textbf{Date} & 20 October 2026 \\
+\textbf{Source retested} & current \texttt{dev} of all 18 repositories, plus live \texttt{api-dev} \\
+\end{tabular}
+
+\vspace{3pt}\hrule\vspace{2pt}
+
+You reported 32 Fixed, 20 Not a Bug, 7 Partially Fixed and 23 Pending. We retested by re-reading the
+current source and re-running the automated checks against it, rather than reading the status labels
+back to you. Where a fix is real we say so; where it is partial or absent we show the evidence. We do
+not yet have the per-bug list of which identifiers you placed in each bucket --- once we do, we will
+map this one to one and respond to the twenty marked ``Not a Bug''. The identifiers below are ours,
+from the register and tracker already with you.
+
+\section{Summary}
+\begin{tabularx}{\textwidth}{@{}lcL@{}}
+\toprule
+\textbf{Outcome} & \textbf{Count} & \textbf{Findings} \\
+\midrule
+Verified fixed & 3 & \wc{011}, \wc{130}, \wc{095} \\
+Partially fixed & 6 & \wc{131}, \wc{129}, \wc{068}, \wc{073}, \wc{133}, \wc{134} \\
+Still present & 11 & \wc{084}, \wc{088}, \wc{079}, \wc{105}, \wc{128}, \wc{013}, \wc{004}, \wc{121}, \wc{112}, \wc{023}, \wc{116} \\
+Runtime re-confirm & 9 & \wc{048}, \wc{084}, \wc{095}, \wc{035}, \wc{122}, \wc{125}, \wc{126}, \wc{078}, \wc{115} \\
+\bottomrule
+\end{tabularx}
+
+\section{Verified fixed}
+\begin{itemize}
+  \item \textbf{\wc{011}} --- the client-side auth guard is no longer hardcoded \texttt{true}; it is
+        derived from the credentials. Confirmed in every frontend app.
+  \item \textbf{\wc{130}} --- the stored-XSS sink is gone. No \texttt{dangerouslySetInnerHTML} or
+        \texttt{innerHTML} assignment remains anywhere in the frontend.
+  \item \textbf{\wc{095}} (S1, cross-centre invoice) --- the invoice API now has a centre-scope
+        check. It exempts \texttt{System~Manager}, but the live accounts no longer hold that role, so
+        the check now applies to them. Source-verified; the runtime write is being re-confirmed on the
+        isolated stack (section 5).
+\end{itemize}
+
+\section{Partially fixed}
+\begin{itemize}
+  \item \textbf{\wc{131}} --- the reset OTP is now drawn with a cryptographic generator
+        (\texttt{secrets.randbelow}). It is still a four-digit code, so the space is 9000 values.
+  \item \textbf{\wc{129}} --- the key is no longer hardcoded in a source file, but the live key is
+        still committed in \texttt{.env}, \texttt{.env.prod} and \texttt{.env.uat}. It needs rotating
+        and purging from history, since the repository was public.
+  \item \textbf{\wc{068}} --- the \texttt{youth\_skilling} API spec endpoints now require
+        authentication; the \texttt{batch\_management} spec is still served to anonymous callers.
+  \item \textbf{\wc{073}} --- the live accounts no longer hold \texttt{System~Manager}: a real
+        improvement. But the code still bypasses permissions at the same number of sites, so the
+        model is now enforced inconsistently rather than centrally (see the Remediation Plan).
+  \item \textbf{\wc{133}} --- a React error boundary now exists in two of nine apps; the other seven
+        still blank out on any component fault.
+  \item \textbf{\wc{134}} --- 204 images without \texttt{alt}, down from 264.
+\end{itemize}
+
+\section{Still present}
+Verified in the current source or live, on 20 October:
+\begin{itemize}
+  \item \textbf{\wc{084}} (S1) --- \texttt{close\_batch} still has no centre or permission check.
+  \item \textbf{\wc{088}} --- the \texttt{id = json.loads(id)} typo is still at both sites.
+  \item \textbf{\wc{079}}, \textbf{\wc{105}} --- the permission bypass is unchanged: 322
+        \texttt{ignore\_permissions} sites and 66 \texttt{System~Manager} references in backend code.
+  \item \textbf{\wc{128}} --- the password-reset flow still logs the OTP to the browser console. We
+        had recorded this as fixed on 8 October; on re-reading the current code it is not, and we are
+        correcting that here.
+  \item \textbf{\wc{013}}, \textbf{\wc{004}} --- the API secret is still kept in \texttt{localStorage}
+        (15 sites) and 19 \texttt{.env} files are still committed.
+  \item \textbf{\wc{121}}, \textbf{\wc{112}}, \textbf{\wc{023}}, \textbf{\wc{116}} --- CORS reflects
+        any origin, no security headers are sent, tracebacks still appear in error bodies, and the
+        session is seven days. All still live on \texttt{api-dev}. If these are fixed in a branch not
+        yet deployed there, tell us which environment to retest.
+\end{itemize}
+
+\section{Runtime re-confirmation (isolated stack)}
+Rebuilt from the current \texttt{dev} source and seeded with synthetic data. The two critical
+write breaches were tested end to end.
+\begin{itemize}
+  \item \textbf{\wc{084}} (S1) --- \textbf{still present, confirmed at runtime.} A Skilling Partner
+        account permitted only for East and West centres closed a batch owned by North Centre: the
+        API answered \emph{``Batch closed successfully.''} \texttt{close\_batch} applies no centre
+        check.
+  \item \textbf{\wc{095}} (S1) --- \textbf{fixed for ordinary accounts, confirmed at runtime.} A
+        non-\texttt{System~Manager} account permitted only for East and West, raising a North
+        invoice, was refused with HTTP 403, \emph{``You do not have permission to raise this
+        invoice.''} The breach now reproduces only for an account that holds \texttt{System~Manager};
+        the live accounts no longer do, so they are protected. The fix is therefore conditional on
+        account-role configuration rather than enforced for every caller --- if any privileged
+        account keeps \texttt{System~Manager}, the breach returns for it.
+\end{itemize}
+The remaining write-side items (\wc{048}, \wc{035}, \wc{122}, \wc{125}, \wc{126}, \wc{078},
+\wc{115}) share the same authorisation root cause; their status stands on the source and earlier
+runtime evidence and was not re-executed in this session.
+
+\section{What we need from you}
+\begin{itemize}
+  \item The per-bug list behind your 32 Fixed / 20 Not a Bug, so we map this report one to one and
+        respond to each ``Not a Bug''.
+  \item Which environment carries the configuration fixes, if \texttt{api-dev} is not it.
+  \item A Skilling Partner account that is actually linked to a partner, so SP-scoped paths can be
+        retested (the one issued returns ``not linked to any Skilling Partner'').
+\end{itemize}
+The grouped plan for everything still open is in the Remediation Plan accompanying this report.
+\end{document}

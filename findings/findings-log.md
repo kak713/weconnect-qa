@@ -3655,3 +3655,65 @@ the checks. Commit messages confirm they are working from our audit — a PR bra
 **Net:** three findings verified fixed (two outright, one partial), a genuine and important move on
 the authorisation model that we could not fully confirm, and several — including an S1 (WC-084) and
 the systemic bypass — still present. We would not yet report the authorisation problem as closed.
+
+## WC-138 · Info — Retest #2 against the client's fixes (2026-10-20): independent verification of current source and live
+
+**The client reported 32 Fixed, 20 Not a Bug, 7 Partially Fixed, 23 Pending (82 total on their
+list) and asked us to retest the Fixed items. We pulled the current `dev` of all 18 repositories
+(mostly 2026-10-19) and re-ran the checks independently, rather than trusting the labels. This
+records the verified status; the write-side items are being re-confirmed on the isolated stack.**
+
+**Verified FIXED (source/live):**
+- **WC-011** — the client-side auth guard is no longer hardcoded `true`; it is now derived as
+  `!!(api_key && api_secret)`. The only remaining literals are in test files.
+- **WC-130** — the stored-XSS sink is gone: zero `dangerouslySetInnerHTML` / `innerHTML` across the
+  frontend.
+- **WC-095** (S1) — `invoice.py` now carries a centre-scope layer. It exempts `System Manager`, but
+  the live accounts no longer hold that role (OC receives 403 on System Settings), so the scope now
+  applies to them. Source-verified; the runtime write is being re-confirmed on the isolated stack.
+
+**PARTIALLY fixed:**
+- **WC-131** — the reset OTP is now drawn with `secrets.randbelow(9000)+1000`, a CSPRNG: the
+  cryptographic weakness is fixed. It is still a four-digit code (9000-value space).
+- **WC-129** — the key is no longer hardcoded in a source file, but `AIzaSy…nOnuQ` is still committed
+  in `weconnect-frontend` `.env`, `.env.prod` and `.env.uat`. It needs rotation and a history purge.
+- **WC-068** — the `youth_skilling` spec endpoints now require auth; `batch_management…swagger_spec`
+  is still reachable unauthenticated (live).
+- **WC-073** — the live accounts no longer hold `System Manager` (major), but the source bypass
+  pattern (`ignore_permissions`) is not reduced.
+- **WC-133** — a React error boundary now exists in two of nine apps (was one); seven still lack one.
+- **WC-134** — 204 `<img>` without `alt` (was 264): improved, not closed.
+
+**Still PRESENT (verified in current source/live):**
+- **WC-084** (S1) — `close_batch` still has no centre/permission guard.
+- **WC-088** — the `id = json.loads(id)` typo is still at both sites.
+- **WC-079** — 322 `ignore_permissions` sites across the eight backends, slightly up from ~296.
+- **WC-105** — 66 `System Manager` references in backend code.
+- **WC-128** — **correction of the 2026-10-08 "fixed".** The reset flow still logs the OTP to the
+  browser console: `console.log("OTP Generation Response:", response.data)` in four apps and
+  `console.log(email, otp)` in two (`forget-password-store.js`). Not fixed.
+- **WC-013** — the API secret is still written to `localStorage` (15 sites).
+- **WC-004** — 19 committed `.env` files remain across the repositories.
+- **WC-121, WC-112, WC-023, WC-116** — CORS wildcard, missing security headers, tracebacks in error
+  bodies, and seven-day sessions are all still live on `api-dev`.
+
+**Runtime re-confirmation on the isolated stack (rebuilt from current `dev`, synthetic data):**
+- **WC-084** (S1) — **still present, confirmed end to end.** A Skilling Partner account permitted
+  only for East/West closed a North-owned batch: the API returned "Batch closed successfully."
+  `close_batch` applies no centre check.
+- **WC-095** (S1) — **fixed for ordinary accounts, confirmed end to end.** A non-`System Manager`
+  account permitted only for East/West, raising a North invoice, was refused with HTTP 403 ("You do
+  not have permission to raise this invoice."). The breach reproduces only for an account holding
+  `System Manager`; the live accounts no longer do. The fix is conditional on account-role
+  configuration — the centre exemption for `System Manager` means any account that retains the role
+  can still breach. The SM exemption sits in the `get_user_permitted_centres` helper the invoice
+  guard calls.
+
+**Still requires the isolated stack or a provisioned SP account to retest at runtime (not re-run
+this session; harness configuration):** WC-048, WC-035, WC-122, WC-125, WC-126, WC-078, WC-115,
+WC-085. Status stands on source and earlier runtime evidence.
+
+**Net:** a handful of genuine fixes (WC-011, WC-130, and the WC-095 invoice breach by way of the
+account-role change), several partials, and the systemic items — the authorisation bypass, committed
+secrets, and an S1 (WC-084) — still open. The authorisation problem is not yet closed. A grouped plan
+for the remainder is in `deliverables/REMEDIATION-PLAN.pdf`. See [[WC-137]] for the first retest.

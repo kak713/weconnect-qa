@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage[a4paper,top=2.3cm,bottom=2.2cm,left=2.3cm,right=2.3cm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage[hidelinks]{hyperref}
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titlespacing{\section}{0pt}{12pt}{4pt}
+\titlespacing{\subsection}{0pt}{8pt}{2pt}
+\setlist[itemize]{leftmargin=1.3em,topsep=2pt,itemsep=2pt,parsep=0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\linespread{1.04}
+\frenchspacing
+\newcommand{\wc}[1]{\mbox{WC-#1}}
+
+\begin{document}
+\justifying
+
+\begin{center}
+{\LARGE\bfseries WeConnect 2.0 --- Remediation Plan}\\[4pt]
+{\large What to fix, in what order, and the structural change behind each}\\[10pt]
+\end{center}
+
+\begin{tabular}{@{}ll@{}}
+\textbf{Prepared for} & Lighthouse Communities Foundation \\
+\textbf{Date} & 20 October 2026 \\
+\end{tabular}
+
+\vspace{3pt}\hrule\vspace{2pt}
+
+This plan groups the 87 defects into seven workstreams, ordered so the root causes are fixed first.
+Each workstream names the one structural change that closes most of its findings, rather than listing
+87 separate patches. Fixing by workstream prevents the pattern we have already seen, where a point
+fix to one endpoint leaves the same flaw in the forty beside it.
+
+\section{Order of work}
+\begin{tabularx}{\textwidth}{@{}c>{\RaggedRight\arraybackslash}X c c@{}}
+\toprule
+\textbf{\#} & \textbf{Workstream} & \textbf{Findings} & \textbf{Contains} \\
+\midrule
+A & Authorisation model --- the root cause of all three S1 breaches & 22 & 3 S1, 12 S2 \\
+B & Secrets and sensitive-data hygiene & 7 & 4 S2 \\
+C & API robustness and a single response contract & 18 & 9 S2 \\
+F & Platform configuration, infrastructure and scale & 13 & 7 S2 \\
+D & Front-end resilience and user experience & 14 & 4 S2 \\
+E & Accessibility & 3 & 1 S2 \\
+G & Build, ownership and reproducibility & 10 & 3 S2 \\
+\bottomrule
+\end{tabularx}
+
+A, B and F carry the security weight and should come first. C and D remove the day-to-day crashes and
+broken screens. E and G are lower urgency but cheap, and G protects everything else by making the
+platform rebuildable.
+
+\section{Workstream A --- Authorisation model}
+\textbf{The structural change.} Give every doctype a real role-permission entry and stop bypassing
+permissions in application code. Today the design has no model: every staff account is forced to hold
+\texttt{System~Manager}, and the code then reads that role as ``no restriction'' while saving with
+\texttt{ignore\_permissions}. The complete role matrix is in the separate \emph{Permission Model
+Proposal}; apply it as versioned fixtures, then remove the per-call bypasses so that
+\texttt{User~Permission} centre-scoping is actually consulted.
+
+\textbf{Progress noted, and a risk.} You have removed \texttt{System~Manager} from the live accounts
+and added a centre-scope layer to the invoice API --- both correct moves, and the invoice breach
+(\wc{095}) now appears closed because the accounts it would run as are no longer exempt. But
+\texttt{ignore\_permissions} has not fallen (322 sites, slightly up), so authorisation is now enforced
+inconsistently, endpoint by endpoint, rather than by one model. Removing the role before the DocPerm
+matrix is fully in place is the sequence the proposal warned against: accounts keep working only
+because the code still bypasses permissions.
+
+\textbf{Closes:} \wc{073}, \wc{079}, \wc{105}, \wc{084}, \wc{048}, \wc{035}, \wc{085}, \wc{095},
+\wc{069}, \wc{091}, \wc{122}, \wc{123}, \wc{114}, \wc{080}, \wc{109}, \wc{115}, \wc{065}, \wc{024},
+\wc{071}, \wc{092}, \wc{078}, \wc{077}.
+
+\section{Workstream B --- Secrets and sensitive-data hygiene}
+\textbf{The structural change.} No secret in a repository, no secret in a log, no long-lived
+credential in the browser. Move all keys and \texttt{.env} values to deployment-time configuration;
+rotate the two Google keys and any API secret that has been committed, since the repository was public;
+purge them from git history. Stop writing the reset OTP and email to the browser console. Move the API
+token out of \texttt{localStorage} into an \texttt{httpOnly} cookie, and shorten the seven-day session.
+
+\textbf{Partly done.} The OTP is now drawn with a cryptographic generator (\wc{131}) --- good --- but it
+is still four digits, and the reset flow still logs it to the console (\wc{128}), so this workstream is
+not yet closed.
+
+\textbf{Closes:} \wc{004}, \wc{129}, \wc{013}, \wc{128}, \wc{131}, \wc{116}, \wc{003}.
+
+\section{Workstream C --- API robustness and a single response contract}
+\textbf{The structural change.} One response envelope, one error convention, validation at the
+boundary. The platform currently ships two different success shapes and returns HTTP 200 on failure,
+500 on a missing argument, and a raw Python traceback in the error body. Standardise on one envelope;
+validate inputs before use so a missing field is a 400, not a 500; strip tracebacks from responses;
+add state-transition control and self-consistent field validation so records cannot hold contradictory
+values; make financial and state-changing calls idempotent.
+
+\textbf{Closes:} \wc{023}, \wc{074}, \wc{076}, \wc{089}, \wc{096}, \wc{101}, \wc{104}, \wc{018},
+\wc{002}, \wc{019}, \wc{068}, \wc{088}, \wc{103}, \wc{126}, \wc{125}, \wc{099}, \wc{038}, \wc{120}.
+
+\section{Workstream F --- Platform configuration, infrastructure and scale}
+\textbf{The structural change.} Harden the edge and fix the concurrency ceiling. Serve security
+headers, lock CORS to known origins instead of reflecting any, add rate limiting, and raise the
+dependency versions that carry known advisories. Separately, find and remove the root cause of the
+500s under three-to-five concurrent sessions --- a worker, connection-pool or locking limit --- because
+it caps how many centre staff can use the platform at once.
+
+\textbf{Closes:} \wc{112}, \wc{121}, \wc{118}, \wc{020}, \wc{047}, \wc{011}, \wc{031}, \wc{014},
+\wc{030}, \wc{117}, \wc{127}, \wc{106}, \wc{110}. (\wc{011}, the disabled auth guard, is already fixed.)
+
+\section{Workstream D --- Front-end resilience and user experience}
+\textbf{The structural change.} A screen should degrade, not disappear. Add a React error boundary to
+every application, and make screens null-safe so a route entered directly by URL --- refreshed,
+bookmarked, or reached with no assigned data --- renders an empty state instead of a blank crash. This
+closes the blank-route family at its root rather than one route at a time.
+
+\textbf{Partly done.} \wc{130}, the stored-XSS sink, is fixed. Error boundaries now exist in two of
+nine apps; the other seven still blank out on any component fault.
+
+\textbf{Closes:} \wc{016}, \wc{043}, \wc{136}, \wc{133}, \wc{017}, \wc{010}, \wc{009}, \wc{007},
+\wc{008}, \wc{032}, \wc{041}, \wc{005}, \wc{006}, \wc{130}.
+
+\section{Workstream E --- Accessibility}
+\textbf{The structural change.} Fix the shared navigation components once, and the critical violations
+clear across every screen that uses them; add alt text and correct the low-contrast colours; add the
+\texttt{jsx-a11y} lint rule so regressions are caught in review.
+
+\textbf{Closes:} \wc{027}, \wc{028}, \wc{134}.
+
+\section{Workstream G --- Build, ownership and reproducibility}
+\textbf{The structural change.} The platform must be rebuildable from the repositories alone. Bring the
+runtime configuration and permission fixtures into version control, resolve ownership of the
+\texttt{fintoo} application that is installed but in no repository, remove the orphaned and duplicated
+doctype definitions, and ship the Approval Categories the code references by name. Until this is done,
+a clean install does not reproduce the running platform.
+
+\textbf{Closes:} \wc{058}, \wc{087}, \wc{055}, \wc{059}, \wc{062}, \wc{063}, \wc{072}, \wc{108},
+\wc{111}, \wc{097}.
+
+\section{How to verify fixes}
+Every finding carries a re-check: the security and configuration items have a runnable command
+(\texttt{node verify/run.mjs}), the code items a named file and line, and the write-side items a
+reproduction that runs on the isolated stack. Re-run these after each workstream rather than at the
+end, so a fix is confirmed closed and a regression is caught in the workstream that caused it.
+\end{document}
