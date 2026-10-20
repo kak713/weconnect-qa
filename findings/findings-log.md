@@ -3737,9 +3737,20 @@ results are faithful.**
   (confirmed for the invoice), so this count is an upper bound, not a clean measure. The source
   bypass count (322 `ignore_permissions`) is the firmer figure.
 
+- **WC-048** (S1, cross-centre counselling read) — **fixed for ordinary accounts, confirmed by
+  source.** `counselling/list.py:103` still carries the explicit `if 'System Manager' in get_roles:
+  pass` bypass, but the `else` branch and the helper (`counselling/helper.py:115,266`) filter by
+  `User Permission` for non-`System Manager` callers. This is the identical conditional to WC-095,
+  which was confirmed to refuse a non-SM caller at runtime. So an ordinary account is scoped; any
+  `System Manager` account still sees every centre.
+- **WC-078** (delete any file by URL) — **still present, confirmed by source.** `delete_file_by_url()`
+  (`outreach/apis/registration/files.py:463`) resolves a `File` from the URL and deletes it with no
+  owner or permission check — no comparison of `frappe.session.user` to the file's owner or its
+  attached document.
+
 **Lifecycle probes** (functional CRUD across personas) ran mostly green; delete endpoints correctly
-return 403. **Not cleanly re-run** (probe harness expects fields the current stricter code now
-requires): WC-035 and WC-048 read-scope, WC-115, WC-078, WC-085 — status stands on source and
+return 403. **Not re-run** (probe harness expects fields the current, stricter code now requires, or
+the endpoint was not located): WC-035 read-scope, WC-115, WC-085 — status stands on source and
 earlier runtime evidence.
 
 **Net:** a handful of genuine fixes (WC-011, WC-130, and the WC-095 invoice breach by way of the
