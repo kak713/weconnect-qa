@@ -5,6 +5,7 @@ The written record of the engagement. The report is the summary; the rest is the
 | Document | What it is | Who it is for |
 |---|---|---|
 | `engagement-report.pdf` | Summary of Phases 1 and 2: what was found, what it means, and what is needed next. Start here. | Anyone |
+| `retest-summary.pdf` | One page: what we checked in the fix retest and the headline result — the cover for the detail in `retest-report.pdf`. | Anyone |
 | `retest-report.pdf` | Retest of the reported fixes (20 Oct): what we verified fixed, partial, or still present, against the current source and live, with the two S1 breaches re-tested end to end. | Anyone tracking the fixes |
 | `remediation-plan.pdf` | The remaining findings grouped into seven workstreams, ordered by root cause, each with the one structural change that closes it. | Whoever plans the fixes |
 | `CHARACTERISATION.md` | **Part 1 is what we need from you** — two questions, seven confirmations, and the sign-off, in about ten minutes. The rest is the reference baseline: what the platform actually does. | Whoever can decide how the platform is meant to behave |

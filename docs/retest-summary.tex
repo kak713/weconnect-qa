@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage[a4paper,top=2.4cm,bottom=2.3cm,left=2.4cm,right=2.4cm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage[hidelinks]{hyperref}
+
+\titleformat{\section}{\normalfont\large\bfseries}{}{0pt}{}
+\titlespacing{\section}{0pt}{12pt}{4pt}
+\setlist[itemize]{leftmargin=1.3em,topsep=2pt,itemsep=2.5pt,parsep=0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\linespread{1.05}
+\frenchspacing
+\newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
+
+\begin{document}
+\justifying
+
+\begin{center}
+{\LARGE\bfseries WeConnect 2.0 --- Fix Retest Summary}\\[10pt]
+\end{center}
+
+\begin{tabular}{@{}ll@{}}
+\textbf{Prepared for} & Lighthouse Communities Foundation \\
+\textbf{Date} & 21 October 2026 \\
+\end{tabular}
+
+\vspace{3pt}\hrule\vspace{2pt}
+
+\section{What we did}
+We retested the reported fixes independently, rather than by their status labels. We re-read the
+current source of all eighteen repositories, re-ran the automated checks against that source and the
+live backend, and rebuilt an isolated copy of the platform to re-run the write-side reproductions and
+the full probe battery. Every write was rolled back; no live or real data was touched.
+
+\section{What we found}
+\begin{tabularx}{\textwidth}{@{}lL@{}}
+\toprule
+\textbf{Outcome} & \textbf{Findings} \\
+\midrule
+\textbf{Confirmed fixed} & The cross-centre \emph{invoice} breach (an ordinary account is now refused); the disabled login guard; the stored-HTML (XSS) sink. \\[3pt]
+\textbf{Improved} & Mass assignment --- 23 of 28 sites now guarded, up from about ten; the reset-code generator; one of the two publicly exposed API specifications closed. \\[3pt]
+\textbf{Still open} & The matching cross-centre \emph{batch-close} breach, reproduced end to end; no control over status transitions; self-contradictory values still accepted; several endpoints return a server error on bad input or a success code on failure; the reset code is still written to the browser console; keys and configuration files remain committed; and CORS, security headers, error tracebacks and seven-day sessions are still live on \texttt{api-dev}. \\
+\bottomrule
+\end{tabularx}
+
+\section{One caveat worth deciding on}
+Several of the access fixes work only because staff accounts no longer carry the \texttt{System~Manager}
+role --- the underlying checks still exempt that role. If any account is given it again, those issues
+return for that account. How that role is granted is worth governing explicitly.
+
+\section{Where the detail is}
+The per-item status is in the bug tracker, in the \emph{Today's Status} column. The items still open,
+grouped by root cause with the structural fix for each, are in the remediation plan.
+\end{document}
