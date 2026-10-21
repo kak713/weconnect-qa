@@ -33,13 +33,13 @@
 
 \vspace{3pt}\hrule\vspace{2pt}
 
-\section{What we did}
-We retested the reported fixes independently, rather than by their status labels. We re-read the
-current source of all eighteen repositories, re-ran the automated checks against that source and the
-live backend, and rebuilt an isolated copy of the platform to re-run the write-side reproductions and
+\section{Method}
+The reported fixes were retested independently, not by their status labels. The current source of all
+eighteen repositories was re-read, the automated checks were re-run against that source and the live
+backend, and an isolated copy of the platform was rebuilt to re-run the write-side reproductions and
 the full probe battery. Every write was rolled back; no live or real data was touched.
 
-\section{What we found}
+\section{Results}
 \begin{tabularx}{\textwidth}{@{}lL@{}}
 \toprule
 \textbf{Outcome} & \textbf{Findings} \\

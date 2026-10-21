@@ -91,15 +91,14 @@ Verified in the current source or live, on 20 October:
   \item \textbf{\wc{088}} --- the \texttt{id = json.loads(id)} typo is still at both sites.
   \item \textbf{\wc{079}}, \textbf{\wc{105}} --- the permission bypass is unchanged: 322
         \texttt{ignore\_permissions} sites and 66 \texttt{System~Manager} references in backend code.
-  \item \textbf{\wc{128}} --- the password-reset flow still logs the OTP to the browser console. We
-        had recorded this as fixed on 8 October; on re-reading the current code it is not, and we are
-        correcting that here.
+  \item \textbf{\wc{128}} --- the password-reset flow still logs the OTP to the browser console.
+        Recorded as fixed on 8 October; the current code shows it is not.
   \item \textbf{\wc{013}}, \textbf{\wc{004}} --- the API secret is still kept in \texttt{localStorage}
         (15 sites) and 19 \texttt{.env} files are still committed.
   \item \textbf{\wc{121}}, \textbf{\wc{112}}, \textbf{\wc{023}}, \textbf{\wc{116}} --- CORS reflects
         any origin, no security headers are sent, tracebacks still appear in error bodies, and the
-        session is seven days. All still live on \texttt{api-dev}. If these are fixed in a branch not
-        yet deployed there, tell us which environment to retest.
+        session is seven days. All still live on \texttt{api-dev}; if fixed in a branch, it is not
+        deployed there.
 \end{itemize}
 
 \section{Runtime re-confirmation (isolated stack)}
@@ -118,7 +117,7 @@ write breaches were tested end to end.
         account-role configuration rather than enforced for every caller --- if any privileged
         account keeps \texttt{System~Manager}, the breach returns for it.
 \end{itemize}
-We also re-ran the full write-side probe battery. The synthetic accounts hold \texttt{System~Manager}
+The full write-side probe battery was also re-run. The synthetic accounts hold \texttt{System~Manager}
 by necessity, so role-gating counts are an upper bound; the data, validation and state results are
 faithful.
 \begin{itemize}
