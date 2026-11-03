@@ -1,0 +1,126 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage[a4paper,top=2.3cm,bottom=2.2cm,left=2.3cm,right=2.3cm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage[hidelinks]{hyperref}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection.}{0.5em}{}
+\titlespacing{\section}{0pt}{12pt}{4pt}
+\setlist[itemize]{leftmargin=1.3em,topsep=2pt,itemsep=3pt,parsep=0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\linespread{1.04}\frenchspacing
+\newcommand{\wc}[1]{\mbox{WC-#1}}
+\newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
+\begin{document}\justifying
+
+\begin{center}{\LARGE\bfseries WeConnect 2.0 --- Retest Response}\\[4pt]
+{\large Independent verification of the Bug Status triage}\\[10pt]\end{center}
+\begin{tabular}{@{}l>{\RaggedRight\arraybackslash}p{13cm}@{}}
+\textbf{Prepared for} & Lighthouse Communities Foundation \\
+\textbf{Date} & 4 November 2026 \\
+\textbf{Basis} & Bug Status sheet (84 findings), current \texttt{dev} source, live \texttt{api-dev}, and an isolated stack rebuilt from current source \\
+\end{tabular}
+\vspace{3pt}\hrule\vspace{2pt}
+
+Each finding was retested against three layers: the current source, the live \texttt{api-dev}
+backend, and a stack rebuilt from current source for write behaviour. Fixes marked ``Fixed on UAT''
+were also checked against the deployed UAT bundle. Verdicts below cite the layer the evidence rests
+on. The full per-finding detail is in the annotated Bug Status sheet.
+
+\section{Summary}
+\begin{tabularx}{\textwidth}{@{}lcL@{}}
+\toprule
+\textbf{Outcome} & \textbf{Count} & \textbf{Findings} \\
+\midrule
+Reported fixed, confirmed fixed & 12 & incl.\ \wc{011}, \wc{130}, \wc{095}, \wc{122}, \wc{018}, \wc{027} (nav) \\
+Reported fixed, still present & 12 & \wc{084}, \wc{043}, \wc{074}, \wc{077}, \wc{078}, \wc{080}, \wc{088}, \wc{089}, \wc{101}, \wc{123}, \wc{126}, \wc{128} \\
+``Not a Bug'', disputed & 10 & \wc{004}, \wc{013}, \wc{023}, \wc{035}, \wc{073}, \wc{079}, \wc{109}, \wc{112}, \wc{115}, \wc{121} \\
+Reclassifications accepted & 37 & config/deployment and documentation/handover items, and genuine non-bugs \\
+New findings (not in the sheet) & 5 & \wc{133}, \wc{134}, \wc{136}, \wc{140}, \wc{141} \\
+\bottomrule
+\end{tabularx}
+
+\section{Reported ``Fixed'' --- still present}
+Each was marked Fixed; each still reproduces.
+\begin{itemize}
+  \item \textbf{\wc{084} (S1).} The note claims a centre check ``via \texttt{user\_can\_access\_centre}.''
+        That function does not exist in \texttt{batch\_management.py}; \texttt{close\_batch} still saves
+        with \texttt{ignore\_permissions=True} and no check. Runtime: a Skilling Partner permitted only
+        for East and West closed a North batch (``Batch closed successfully''). Severity S1 stands.
+  \item \textbf{\wc{128}.} The note says the production build strips console output. The deployed
+        \texttt{/auth/} bundle still contains \texttt{console.log("OTP Generation Response: ", ...)} and
+        logs the reset email and OTP. The strip applies to OC, not to the auth app where the reset flow runs.
+  \item \textbf{\wc{126}.} Runtime: every status transition is accepted --- Skilling Invoice 30 of 30,
+        Skilling Batch 72 of 72. No state machine.
+  \item \textbf{\wc{123}.} Runtime: an account wrote a field on another user's record (HTTP 200).
+        \texttt{update\_profile} has no active permission check.
+  \item \textbf{\wc{078}.} \texttt{delete\_file\_by\_url} resolves a file by URL and deletes it with no
+        owner or permission check.
+  \item \textbf{\wc{080}.} \texttt{move\_youth} creates a batch-transfer approval with no caller check.
+  \item \textbf{\wc{077}.} The unauthenticated endpoint still carries \texttt{allow\_guest} and assigns
+        \texttt{System Manager}.
+  \item \textbf{\wc{088}.} The \texttt{id = json.loads(id)} typo is still at both sites.
+  \item \textbf{\wc{089} / \wc{101}.} Runtime: endpoints return HTTP 500 on malformed input instead of
+        400; \texttt{add\_remarks} raises a \texttt{TypeError}.
+  \item \textbf{\wc{074}.} Runtime: \texttt{close\_batch} returns HTTP 200 on a failed call.
+  \item \textbf{\wc{043}.} The null-navigation crash persists; only two of nine apps define an error
+        boundary to contain it.
+\end{itemize}
+
+\section{``Not a Bug'' --- disputed}
+Conceded reclassifications are in section 4. The following are security-relevant and remain present.
+\begin{itemize}
+  \item \textbf{\wc{115}.} Marked both ``Valid Bug'' and ``Not a Bug''. \texttt{sync\_to\_lcf\_mastersheet}
+        still has no authorisation check; any authenticated account, including an external Skilling
+        Partner, can export programme data to an external spreadsheet. OWASP API6.
+  \item \textbf{\wc{079} / \wc{073} / \wc{035}.} The permission model still does not exist as designed;
+        326 \texttt{ignore\_permissions} sites bypass authorisation. This is the root cause behind the
+        cross-centre write breaches (\wc{084}, and the residual in \wc{095}/\wc{048}).
+  \item \textbf{\wc{013}.} The API secret is still written to \texttt{localStorage} at 18 sites. Any
+        cross-site scripting on the domain exfiltrates a long-lived credential.
+  \item \textbf{\wc{004}.} 28 \texttt{.env} files remain committed.
+  \item \textbf{\wc{109}.} \texttt{dashboard.get\_invoice\_count} returns a global financial total with
+        no scoping; any account sees organisation-wide figures.
+  \item \textbf{\wc{121} / \wc{112} / \wc{023}.} ``Config/Deployment'' is a fair label, but all three are
+        still live on \texttt{api-dev}: CORS reflects any origin with credentials, no security headers
+        are sent, and tracebacks appear in error bodies. The label is accepted; closure is not.
+\end{itemize}
+
+\section{Reclassifications accepted}
+The ``Config/Deployment'' framing is accepted for the concurrency, CORS, header, traceback and session
+items; they are deployment configuration, not code defects, and still need resolving. The
+``Documentation/Handover'' framing is accepted for the permission-model-in-no-repository, runtime-config
+and fresh-install items. \wc{009}, \wc{117}, \wc{002}, \wc{092} and \wc{104} are accepted as non-bugs
+or by-design. \wc{068} is a fair partial downgrade. Genuine fixes confirmed: the auth guard (\wc{011}),
+the stored-HTML sink (\wc{130}), the cross-centre invoice for ordinary accounts (\wc{095}, \wc{085}),
+mass assignment (\wc{122}, now 23 of 28 sites guarded), the navigation list structure (\wc{027}, by axe),
+and \wc{018}, \wc{041}, \wc{010}, \wc{005}, \wc{006}, \wc{007}, \wc{014}.
+
+\section{Severity}
+Only one downgrade is contested on risk grounds. \textbf{\wc{048}} (S1$\rightarrow$S3): the stated
+reason, ``bypass only for Administrator,'' is inaccurate --- the gate is still \texttt{System Manager}.
+The disclosure is scoped for ordinary accounts (all six persona accounts confirmed non-\texttt{System
+Manager}), but the bypass remains reachable by any \texttt{System Manager} account on youth counselling
+data. Recommended severity S2. Two further downgrades are noted without a hard objection: \wc{013}
+(credential exposure, rated S2 here) and \wc{126} (uncontrolled financial-state transitions). The other
+23 downgrades are accepted.
+
+\section{New findings (not in the Bug Status sheet)}
+\begin{itemize}
+  \item \textbf{\wc{140} (S2).} \texttt{App.jsx} in six frontend apps (OC, CH, FC, SP, SYC, PYC) hardcodes
+        an \texttt{api\_key}/\texttt{api\_secret} pair and a real staff \texttt{sid}, email and employee
+        ID. A Frappe key/secret pair is a working credential. Rotate every exposed secret, remove them
+        from source and git history, and load development credentials from untracked configuration.
+  \item \textbf{\wc{141} (S3).} A button without an accessible name and a scrollable region that cannot
+        take keyboard focus, found by axe on the deployed OC app.
+  \item \textbf{\wc{133} (S2).} Seven of nine frontend apps define no error boundary; a component fault
+        blanks the screen (the mechanism behind \wc{016}/\wc{043}).
+  \item \textbf{\wc{134} (S3).} 201 image elements have no \texttt{alt} attribute (264 at first report).
+  \item \textbf{\wc{136} (S3).} Seven routes crash for an account with no assigned centres, a real state
+        for newly onboarded staff.
+\end{itemize}
+\end{document}

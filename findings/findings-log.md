@@ -3757,3 +3757,43 @@ earlier runtime evidence.
 account-role change), several partials, and the systemic items — the authorisation bypass, committed
 secrets, and an S1 (WC-084) — still open. The authorisation problem is not yet closed. A grouped plan
 for the remainder is in `deliverables/REMEDIATION-PLAN.pdf`. See [[WC-137]] for the first retest.
+
+## WC-139 · Info — Retest #3 against the client's Bug Status triage (2026-11-04)
+
+The client returned the tracker with a "Bug Status" subsheet triaging all 84 findings: a Verdict, a
+Suggested Severity, a Status (37 Fixed, 7 Partially Fixed, 9 Pending, ~31 Not a Bug) and notes. Every
+finding was retested against three layers — current `dev` source, live `api-dev`, and an isolated
+stack rebuilt from current source — with "Fixed on UAT" items also checked against the deployed UAT
+bundle. Full per-finding verdicts are in `deliverables/WeConnect-Retest-Response.xlsx` and
+`deliverables/RETEST-RESPONSE.pdf`; evidence in `deliverables/EVIDENCE-PACK.md`.
+
+**Outcome:** 12 reported fixes confirmed fixed; 12 reported fixes still present; 10 "Not a Bug" items
+disputed as security-relevant and still present; 37 reclassifications accepted; one severity downgrade
+contested (WC-048 S1->S3). Two new findings surfaced during the retest: WC-140, WC-141.
+
+**Confirmed fixed:** WC-011, WC-130, WC-095/WC-085 (ordinary accounts), WC-122, WC-027 (nav, by axe),
+WC-018, WC-041, WC-010, WC-005, WC-006, WC-007, WC-014.
+**Reported fixed but still present:** WC-084 (S1, runtime), WC-128 (deployed bundle), WC-126 (runtime),
+WC-123 (runtime), WC-078, WC-080, WC-077, WC-088, WC-089, WC-101 (runtime), WC-074 (runtime), WC-043.
+**"Not a Bug" disputed:** WC-115, WC-079, WC-073, WC-035, WC-013, WC-004, WC-109, WC-121, WC-112, WC-023.
+
+## WC-140 · S2 — Hardcoded staff API credentials and PII committed in frontend source [VERIFIED — source, 2026-11-04]
+
+`App.jsx` in six frontend apps hardcodes an `api_key`/`api_secret` pair and a real staff account's
+`sid`, `email`, `full_name` and `employee_id`:
+
+- `weconnect-frontend` (OC): `api_key = "<api_key redacted>"`, `a real vendor email (OC)`, `a real employee ID`.
+- `weconnect-frontend-ch` (`a real staff email (CH)`), `-fc`, `-sp`, `-syc`
+  (`monika.*@lighthouseconnect.org`), `-pyc` (`a real staff email (PYC)`).
+
+A Frappe `api_key`/`api_secret` pair is a working credential; a committed pair is a committed
+credential. These were **not** used to authenticate. **Fix:** rotate every exposed secret, remove
+them from source and git history, and load development credentials from untracked configuration.
+Related to WC-129 (committed Google key) and WC-004 (committed env files). DPDP exposure for the PII.
+
+## WC-141 · S3 — Accessibility defects found by axe on the deployed UAT app [VERIFIED — axe, 2026-11-04]
+
+Fresh axe run against the deployed OC app (authenticated): a button with no accessible name
+(WCAG 4.1.2, critical) on the dashboard, and a scrollable region that cannot take keyboard focus
+(WCAG 2.1.1) on the planning screen. Not in the original register. Part of the accessibility
+workstream with WC-027/WC-028/WC-134.
